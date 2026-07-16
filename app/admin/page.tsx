@@ -1,9 +1,9 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { createClient } from '@/lib/supabase';
-import { Lock, Upload, Users, Loader2 } from 'lucide-react';
+import { Lock, Upload, Users, Loader2, Download, Filter } from 'lucide-react';
 
 export default function AdminPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false); // Should check Supabase session
@@ -12,6 +12,7 @@ export default function AdminPage() {
   const [activeTab, setActiveTab] = useState<'registrations' | 'upload'>('registrations');
   const [registrations, setRegistrations] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [filterSport, setFilterSport] = useState<string>('All');
 
   useEffect(() => {
     if (isAuthenticated && activeTab === 'registrations') {
@@ -38,6 +39,42 @@ export default function AdminPage() {
     if (email === 'admin@ruet.ac.bd' && password === 'admin') {
       setIsAuthenticated(true);
     }
+  };
+
+  const uniqueSports = useMemo(() => {
+    const sports = new Set(registrations.map(r => r.sport));
+    return ['All', ...Array.from(sports)];
+  }, [registrations]);
+
+  const filteredRegistrations = useMemo(() => {
+    if (filterSport === 'All') return registrations;
+    return registrations.filter(r => r.sport === filterSport);
+  }, [registrations, filterSport]);
+
+  const exportToCSV = () => {
+    const headers = ['Sport', 'Team/Player', 'Captain', 'WhatsApp', 'Date'];
+    const rows = filteredRegistrations.map(reg => [
+      reg.sport,
+      reg.team_name || 'Individual',
+      reg.captain_name,
+      reg.whatsapp,
+      new Date(reg.created_at).toLocaleDateString()
+    ]);
+
+    const csvContent = [
+      headers.join(','),
+      ...rows.map(row => row.map(cell => `"${cell}"`).join(','))
+    ].join('\n');
+
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    const url = URL.createObjectURL(blob);
+    link.setAttribute('href', url);
+    link.setAttribute('download', `registrations_${filterSport.replace(/\s+/g, '_')}.csv`);
+    link.style.visibility = 'hidden';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   if (!isAuthenticated) {
@@ -111,7 +148,32 @@ export default function AdminPage() {
 
       {activeTab === 'registrations' && (
         <div className="bg-white shadow-sm border border-gold/10 p-6 rounded-xl">
-          <h2 className="text-xl font-script text-gold mb-6 text-3xl">Sports Registrations</h2>
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
+            <h2 className="text-xl font-script text-gold text-3xl">Sports Registrations</h2>
+            
+            <div className="flex flex-wrap items-center gap-4">
+              <div className="flex items-center gap-2 bg-[#FAF9F6] border border-gray-200 rounded px-3 py-2">
+                <Filter size={16} className="text-gray-500" />
+                <select 
+                  value={filterSport}
+                  onChange={(e) => setFilterSport(e.target.value)}
+                  className="bg-transparent text-sm outline-none text-gray-700 cursor-pointer"
+                >
+                  {uniqueSports.map(sport => (
+                    <option key={sport} value={sport}>{sport}</option>
+                  ))}
+                </select>
+              </div>
+
+              <button 
+                onClick={exportToCSV}
+                disabled={filteredRegistrations.length === 0}
+                className="flex items-center gap-2 bg-green-600 hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed text-white px-4 py-2 rounded text-sm font-medium transition-colors"
+              >
+                <Download size={16} /> Export CSV
+              </button>
+            </div>
+          </div>
           
           <div className="mt-4 border border-gray-200 rounded-lg overflow-hidden">
             <table className="w-full text-left text-sm">
@@ -131,14 +193,14 @@ export default function AdminPage() {
                       <Loader2 className="animate-spin text-gold w-8 h-8 mx-auto" />
                     </td>
                   </tr>
-                ) : registrations.length === 0 ? (
+                ) : filteredRegistrations.length === 0 ? (
                   <tr>
                     <td colSpan={5} className="p-8 text-center text-gray-500">
                       No registrations found.
                     </td>
                   </tr>
                 ) : (
-                  registrations.map((reg) => (
+                  filteredRegistrations.map((reg) => (
                     <tr key={reg.id} className="hover:bg-gray-50 transition-colors">
                       <td className="p-4 font-medium">{reg.sport}</td>
                       <td className="p-4">{reg.team_name || 'Individual'}</td>
