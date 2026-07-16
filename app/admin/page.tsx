@@ -120,6 +120,7 @@ export default function AdminPage() {
     );
   }
 
+  return (
     <div className="min-h-screen p-8 pt-32 max-w-7xl mx-auto bg-background text-white relative">
       <div className="absolute top-[10%] left-[10%] w-[400px] h-[400px] bg-gold/5 rounded-full blur-[120px] pointer-events-none" />
       <div className="flex justify-between items-center mb-12 border-b border-gold/20 pb-6">
