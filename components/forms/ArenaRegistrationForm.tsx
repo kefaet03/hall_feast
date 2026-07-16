@@ -59,6 +59,7 @@ const registrationSchema = z.discriminatedUnion('sport', [
     teamName: z.string().min(2, 'Team Name required'),
     captain: playerSchema,
     members: z.array(playerSchema).length(1, 'Requires exactly 1 partner'),
+  }),
   // Major Team (Football, Cricket - 12 players total)
   baseSchema.extend({
     sport: z.enum(['Football', 'Cricket']),
