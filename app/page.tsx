@@ -83,10 +83,19 @@ export default function Home() {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.8 }}
-          className="text-gold tracking-[0.4em] text-xs md:text-sm uppercase mb-8 font-medium"
+          className="text-gold tracking-[0.4em] text-xs md:text-sm uppercase mb-4 font-medium"
         >
           Shahid President Ziaur Rahman Hall
         </motion.h3>
+        
+        <motion.p
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.7, duration: 0.8 }}
+          className="text-gray-400 uppercase tracking-widest text-sm mb-8 italic"
+        >
+          Presents
+        </motion.p>
         
         <KineticText text="The Final Bell '20" />
         
@@ -94,7 +103,7 @@ export default function Home() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.2, duration: 1 }}
-          className="text-lg md:text-xl text-gray-400 mt-10 italic font-serif max-w-2xl mx-auto"
+          className="text-lg md:text-xl text-gray-400 mt-10 italic font-serif max-w-4xl mx-auto md:whitespace-nowrap"
         >
           Celebrating the Bonds. Honoring the Memories. Welcoming New Beginnings.
         </motion.p>
@@ -152,10 +161,7 @@ export default function Home() {
           </div>
           <div>
             <h3 className="text-xl font-bold text-white mb-2">RUET Campus</h3>
-            <p className="text-gray-400 text-sm">Shahid President Ziaur Rahman Hall Premises.</p>
-          </div>
-          <div className="mt-8 text-xs text-[#00f3ff] uppercase tracking-widest flex items-center gap-2 group-hover:gap-4 transition-all">
-            View Map <span>→</span>
+            <p className="text-white font-bold text-sm">Shahid President Ziaur Rahman Hall Premises.</p>
           </div>
         </motion.div>
 
@@ -173,7 +179,7 @@ export default function Home() {
             <Users size={24} />
           </div>
           <div>
-            <div className="text-2xl font-black text-white">120+</div>
+            <div className="text-2xl font-black text-white">180+</div>
             <div className="text-sm text-gray-400">Graduating Brothers</div>
           </div>
         </motion.div>
@@ -209,8 +215,8 @@ export default function Home() {
             <Trophy size={24} />
           </div>
           <div>
-            <div className="text-2xl font-black text-white">5</div>
-            <div className="text-sm text-gray-400">Signature Events</div>
+            <div className="text-2xl font-black text-white">IV</div>
+            <div className="text-sm text-gray-400">Signature Chapters</div>
           </div>
         </motion.div>
       </div>
