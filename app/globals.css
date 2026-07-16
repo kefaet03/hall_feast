@@ -5,8 +5,8 @@
 :root {
   --foreground-rgb: 250, 249, 246;
   /* #FAF9F6 */
-  --background-rgb: 18, 18, 18;
-  /* #121212 */
+  --background-rgb: 10, 10, 10;
+  /* #0a0a0a */
 }
 
 body {
@@ -29,5 +29,26 @@ body {
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: #D4AF37;
+  background: #E5C07B;
+}
+
+/* Glassmorphism Utilities */
+.glass-panel {
+  background: rgba(18, 18, 22, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(229, 192, 123, 0.15); /* Soft gold border */
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+}
+
+.glass-panel-hover:hover {
+  background: rgba(18, 18, 22, 0.8);
+  border: 1px solid rgba(229, 192, 123, 0.3);
+}
+
+.text-gradient-gold {
+  background: linear-gradient(to right, #F3D59B, #E5C07B, #B39556);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }

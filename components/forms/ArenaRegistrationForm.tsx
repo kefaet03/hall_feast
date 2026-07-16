@@ -141,11 +141,11 @@ export default function ArenaRegistrationForm({ initialSport = 'Football', onClo
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
-      className="bg-[#121212] border border-[#D4AF37]/30 rounded-xl p-6 w-full max-w-2xl mx-auto max-h-[80vh] overflow-y-auto custom-scrollbar text-[#FAF9F6]"
+      className="glass-panel border-gold/30 rounded-2xl p-8 w-full max-w-2xl mx-auto max-h-[85vh] overflow-y-auto custom-scrollbar text-[#FAF9F6] relative shadow-2xl"
     >
-      <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-serif text-[#D4AF37]">Register for {selectedSport}</h2>
-        <button onClick={onClose} className="text-gray-400 hover:text-white">&times;</button>
+      <div className="flex justify-between items-center mb-8 border-b border-gold/20 pb-4">
+        <h2 className="text-2xl font-serif text-gold tracking-wide">Register for <span className="font-bold">{selectedSport}</span></h2>
+        <button onClick={onClose} className="text-gray-400 hover:text-white transition-colors bg-white/5 hover:bg-white/10 rounded-full w-8 h-8 flex items-center justify-center">&times;</button>
       </div>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
@@ -232,13 +232,15 @@ export default function ArenaRegistrationForm({ initialSport = 'Football', onClo
           </div>
         )}
 
-        <button 
+        <motion.button 
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
           type="submit" 
           disabled={isSubmitting}
-          className="w-full bg-[#D4AF37] text-black font-semibold py-3 rounded-lg hover:bg-[#F3E5AB] transition-colors disabled:opacity-50"
+          className="w-full bg-gold text-black font-semibold py-4 rounded-xl hover:bg-gold-light transition-all disabled:opacity-50 mt-8 shadow-[0_0_20px_rgba(229,192,123,0.3)] hover:shadow-[0_0_30px_rgba(229,192,123,0.5)]"
         >
           {isSubmitting ? 'Registering...' : 'Complete Registration'}
-        </button>
+        </motion.button>
       </form>
     </motion.div>
   );

@@ -79,11 +79,12 @@ export default function AdminPage() {
 
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen flex items-center justify-center p-6 bg-[#FAF9F6]">
+      <div className="min-h-screen flex items-center justify-center p-6 bg-background relative overflow-hidden">
+        <div className="absolute top-[20%] right-[20%] w-[300px] h-[300px] bg-gold/10 rounded-full blur-[100px] pointer-events-none" />
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="bg-white shadow-xl border border-gold/30 p-8 rounded-xl max-w-md w-full"
+          className="glass-panel p-8 rounded-2xl max-w-md w-full relative z-10"
         >
           <div className="flex justify-center mb-6 text-gold">
             <Lock size={48} strokeWidth={1.5} />
@@ -91,26 +92,26 @@ export default function AdminPage() {
           <h1 className="text-4xl font-script text-center mb-8 text-gold">Admin Portal</h1>
           <form onSubmit={handleLogin} className="space-y-4">
             <div>
-              <label className="block text-sm mb-1 text-gray-600">Email</label>
+              <label className="block text-sm mb-1 text-gray-400">Email</label>
               <input 
                 type="email" 
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full bg-white border border-gray-300 rounded p-3 text-gray-800 focus:border-gold outline-none transition-colors" 
+                className="w-full bg-black/40 border border-gray-700 rounded p-3 text-white focus:border-gold outline-none transition-colors" 
                 required 
               />
             </div>
             <div>
-              <label className="block text-sm mb-1 text-gray-600">Password</label>
+              <label className="block text-sm mb-1 text-gray-400">Password</label>
               <input 
                 type="password" 
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full bg-white border border-gray-300 rounded p-3 text-gray-800 focus:border-gold outline-none transition-colors" 
+                className="w-full bg-black/40 border border-gray-700 rounded p-3 text-white focus:border-gold outline-none transition-colors" 
                 required 
               />
             </div>
-            <button type="submit" className="w-full bg-gold text-white font-bold py-3 rounded hover:bg-gold/80 transition-colors mt-6 shadow-md">
+            <button type="submit" className="w-full bg-gold text-black font-bold py-3 rounded-xl hover:bg-gold-light transition-colors mt-6 shadow-[0_0_15px_rgba(229,192,123,0.3)]">
               Access Dashboard
             </button>
           </form>
@@ -119,8 +120,8 @@ export default function AdminPage() {
     );
   }
 
-  return (
-    <div className="min-h-screen p-8 max-w-7xl mx-auto bg-[#FAF9F6] text-gray-800">
+    <div className="min-h-screen p-8 pt-32 max-w-7xl mx-auto bg-background text-white relative">
+      <div className="absolute top-[10%] left-[10%] w-[400px] h-[400px] bg-gold/5 rounded-full blur-[120px] pointer-events-none" />
       <div className="flex justify-between items-center mb-12 border-b border-gold/20 pb-6">
         <h1 className="text-5xl font-script text-gold">Admin Dashboard</h1>
         <button 
@@ -134,30 +135,30 @@ export default function AdminPage() {
       <div className="flex gap-4 mb-8">
         <button 
           onClick={() => setActiveTab('registrations')}
-          className={`px-6 py-3 rounded font-medium flex items-center gap-2 transition-colors ${activeTab === 'registrations' ? 'bg-gold text-white shadow-md' : 'bg-white border border-gray-200 text-gray-500 hover:text-gray-800'}`}
+          className={`px-6 py-3 rounded-full font-medium flex items-center gap-2 transition-colors ${activeTab === 'registrations' ? 'bg-gold text-black shadow-[0_0_15px_rgba(229,192,123,0.3)]' : 'glass-panel text-gray-400 hover:text-white'}`}
         >
           <Users size={20} /> Registrations
         </button>
         <button 
           onClick={() => setActiveTab('upload')}
-          className={`px-6 py-3 rounded font-medium flex items-center gap-2 transition-colors ${activeTab === 'upload' ? 'bg-gold text-white shadow-md' : 'bg-white border border-gray-200 text-gray-500 hover:text-gray-800'}`}
+          className={`px-6 py-3 rounded-full font-medium flex items-center gap-2 transition-colors ${activeTab === 'upload' ? 'bg-gold text-black shadow-[0_0_15px_rgba(229,192,123,0.3)]' : 'glass-panel text-gray-400 hover:text-white'}`}
         >
           <Upload size={20} /> Archive Uploader
         </button>
       </div>
 
       {activeTab === 'registrations' && (
-        <div className="bg-white shadow-sm border border-gold/10 p-6 rounded-xl">
+        <div className="glass-panel p-8 rounded-2xl relative z-10">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
-            <h2 className="text-xl font-script text-gold text-3xl">Sports Registrations</h2>
+            <h2 className="text-xl font-serif text-gold text-3xl">Sports Registrations</h2>
             
             <div className="flex flex-wrap items-center gap-4">
-              <div className="flex items-center gap-2 bg-[#FAF9F6] border border-gray-200 rounded px-3 py-2">
-                <Filter size={16} className="text-gray-500" />
+              <div className="flex items-center gap-2 bg-black/40 border border-gray-700 rounded-lg px-3 py-2">
+                <Filter size={16} className="text-gold" />
                 <select 
                   value={filterSport}
                   onChange={(e) => setFilterSport(e.target.value)}
-                  className="bg-transparent text-sm outline-none text-gray-700 cursor-pointer"
+                  className="bg-transparent text-sm outline-none text-gray-300 cursor-pointer [&>option]:bg-charcoal"
                 >
                   {uniqueSports.map(sport => (
                     <option key={sport} value={sport}>{sport}</option>
@@ -175,9 +176,9 @@ export default function AdminPage() {
             </div>
           </div>
           
-          <div className="mt-4 border border-gray-200 rounded-lg overflow-hidden">
+          <div className="mt-4 border border-gold/20 rounded-xl overflow-hidden bg-black/40">
             <table className="w-full text-left text-sm">
-              <thead className="bg-[#FAF9F6] text-gray-600 border-b border-gray-200">
+              <thead className="bg-white/5 text-gold border-b border-gold/20">
                 <tr>
                   <th className="p-4">Sport</th>
                   <th className="p-4">Team/Player</th>
@@ -186,7 +187,7 @@ export default function AdminPage() {
                   <th className="p-4">Date</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-100">
+              <tbody className="divide-y divide-gray-800">
                 {isLoading ? (
                   <tr>
                     <td colSpan={5} className="p-8 text-center">
@@ -201,7 +202,7 @@ export default function AdminPage() {
                   </tr>
                 ) : (
                   filteredRegistrations.map((reg) => (
-                    <tr key={reg.id} className="hover:bg-gray-50 transition-colors">
+                    <tr key={reg.id} className="hover:bg-white/5 transition-colors">
                       <td className="p-4 font-medium">{reg.sport}</td>
                       <td className="p-4">{reg.team_name || 'Individual'}</td>
                       <td className="p-4">{reg.captain_name}</td>
@@ -219,9 +220,9 @@ export default function AdminPage() {
       )}
 
       {activeTab === 'upload' && (
-        <div className="bg-white shadow-sm border border-gold/10 p-6 rounded-xl">
-          <h2 className="text-xl font-script text-gold mb-6 text-3xl">Upload to Archive</h2>
-          <div className="border-2 border-dashed border-gray-300 rounded-xl p-16 flex flex-col items-center justify-center text-gray-400 hover:border-gold hover:text-gold transition-colors cursor-pointer bg-[#FAF9F6]">
+        <div className="glass-panel p-8 rounded-2xl relative z-10">
+          <h2 className="text-xl font-serif text-gold mb-6 text-3xl">Upload to Archive</h2>
+          <div className="border-2 border-dashed border-gray-600 rounded-xl p-16 flex flex-col items-center justify-center text-gray-400 hover:border-gold hover:text-gold transition-colors cursor-pointer bg-black/40">
             <Upload size={48} className="mb-4 opacity-50" />
             <p className="font-medium text-lg mb-2">Drag and drop images here</p>
             <p className="text-sm opacity-60">or click to browse files (JPEG, PNG, WebP)</p>

@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 // import { createClient } from '@/lib/supabase';
 // import { ArchiveImage } from '@/types';
-import { X, Loader2 } from 'lucide-react';
+import { X, Loader2, Heart } from 'lucide-react';
 
 // Mock data for UI demonstration until Supabase is hooked up
 const mockImages = [
@@ -35,10 +35,14 @@ export default function ArchivePage() {
   */
 
   return (
-    <div className="min-h-screen p-8 max-w-7xl mx-auto">
-      <div className="text-center mb-16">
-        <h1 className="text-4xl md:text-5xl font-serif font-bold text-gold mb-4">The Archive</h1>
-        <p className="text-xl text-gray-300 font-serif italic">Preserving memories of the 2020-2021 batch.</p>
+    <div className="min-h-screen p-8 pt-32 max-w-7xl mx-auto relative overflow-hidden">
+      {/* Background Glow */}
+      <div className="fixed top-[20%] left-[20%] w-[500px] h-[500px] bg-gold/5 rounded-full blur-[150px] pointer-events-none z-0" />
+      <div className="text-center mb-16 relative z-10">
+        <h1 className="text-4xl md:text-5xl font-serif font-bold text-white mb-4 tracking-wide">
+          The <span className="text-gradient-gold">Archive</span>
+        </h1>
+        <p className="text-xl text-gray-400 font-serif italic">Preserving memories of the 2020-2021 batch.</p>
       </div>
 
       {isLoading ? (
@@ -46,22 +50,41 @@ export default function ArchivePage() {
           <Loader2 className="animate-spin text-gold w-12 h-12" />
         </div>
       ) : (
-        <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
+        <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6 relative z-10">
           {images.map((img, index) => (
             <motion.div
               key={img.id}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
-              className="break-inside-avoid cursor-pointer group relative overflow-hidden rounded-xl border border-gold/10 hover:border-gold/50 transition-colors"
-              onClick={() => setSelectedImage(img.url)}
+              whileHover={{ y: -5 }}
+              className="break-inside-avoid group relative overflow-hidden rounded-2xl glass-panel p-2 shadow-xl hover:shadow-[0_0_30px_rgba(229,192,123,0.15)] transition-all duration-300"
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={img.url} alt={img.title || 'Archive Image'} className="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500" />
-              
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                <span className="text-gold font-serif text-lg">{img.title}</span>
+              <div 
+                className="relative overflow-hidden rounded-xl cursor-pointer"
+                onClick={() => setSelectedImage(img.url)}
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={img.url} alt={img.title || 'Archive Image'} className="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-700" />
+                
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-between p-6">
+                  <span className="text-gold font-serif text-xl font-bold tracking-wide">{img.title}</span>
+                </div>
               </div>
+
+              {/* Like Button Micro-interaction */}
+              <button 
+                className="absolute top-6 right-6 w-10 h-10 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center text-white/50 hover:text-red-500 hover:bg-black/60 transition-all opacity-0 group-hover:opacity-100 scale-90 group-hover:scale-100 hover:scale-110 active:scale-90"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  // In a real app, toggle like state here
+                  const target = e.currentTarget;
+                  target.classList.toggle('text-red-500');
+                  target.classList.toggle('text-white/50');
+                }}
+              >
+                <Heart size={20} className="fill-current transition-colors" />
+              </button>
             </motion.div>
           ))}
         </div>

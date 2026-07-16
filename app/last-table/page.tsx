@@ -4,16 +4,20 @@ import { motion } from 'framer-motion';
 
 export default function LastTablePage() {
   return (
-    <div className="min-h-screen flex items-center justify-center p-6 bg-charcoal/50">
+    <div className="min-h-screen flex items-center justify-center p-6 pt-24 relative overflow-hidden">
+      {/* Background Glow */}
+      <div className="absolute bottom-[20%] right-[20%] w-[400px] h-[400px] bg-neon-blue/5 rounded-full blur-[120px] pointer-events-none" />
+      
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8 }}
-        className="relative max-w-4xl w-full bg-[#1A1A1A] border-2 border-gold p-2 shadow-2xl"
+        whileHover={{ scale: 1.01 }}
+        className="relative max-w-4xl w-full glass-panel p-2 shadow-2xl rounded-2xl"
       >
-        <div className="border border-gold/50 p-8 md:p-16 text-center h-full">
+        <div className="border border-gold/20 rounded-xl p-8 md:p-16 text-center h-full bg-black/40">
           <h3 className="text-gold tracking-[0.4em] uppercase text-sm mb-4">Chapter IV</h3>
-          <h1 className="text-5xl md:text-6xl font-serif font-bold mb-12">The Last Table</h1>
+          <h1 className="text-5xl md:text-6xl font-serif font-bold mb-12 text-gradient-gold">The Last Table</h1>
 
           <div className="w-16 h-[1px] bg-gold mx-auto mb-12"></div>
 

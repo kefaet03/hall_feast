@@ -21,26 +21,31 @@ export default function ArenaPage() {
   const [selectedSport, setSelectedSport] = useState<Sport | null>(null);
 
   return (
-    <div className="min-h-screen p-8 max-w-7xl mx-auto">
-      <div className="text-center mb-16">
-        <h1 className="text-4xl md:text-5xl font-serif font-bold text-gold mb-4">Chapter I: The Arena</h1>
-        <p className="text-xl text-gray-300">Step onto the field of glory. Register for your event below.</p>
+    <div className="min-h-screen p-8 pt-32 max-w-7xl mx-auto relative">
+      {/* Background Glow */}
+      <div className="fixed top-[20%] left-[20%] w-[400px] h-[400px] bg-gold/5 rounded-full blur-[120px] pointer-events-none" />
+      <div className="text-center mb-16 relative z-10">
+        <h1 className="text-4xl md:text-5xl font-serif font-bold text-white mb-4 tracking-wide">
+          Chapter I: <span className="text-gradient-gold">The Arena</span>
+        </h1>
+        <p className="text-xl text-gray-400 font-serif italic">Step onto the field of glory. Register for your event below.</p>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {sports.map((sport, index) => (
           <motion.div
             key={sport.name}
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.1 }}
             whileHover={{ y: -5, scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
             onClick={() => setSelectedSport(sport.name)}
-            className="bg-charcoal border border-gold/30 rounded-xl p-8 flex flex-col items-center justify-center text-center cursor-pointer hover:border-gold hover:shadow-[0_0_20px_rgba(212,175,55,0.2)] transition-all"
+            className="glass-panel rounded-3xl p-8 flex flex-col items-center justify-center text-center cursor-pointer glass-panel-hover transition-all min-h-[220px]"
           >
-            <div className="text-gold mb-4">{sport.icon}</div>
-            <h3 className="text-xl font-bold mb-2">{sport.name}</h3>
-            <span className="text-sm text-gray-400 bg-black/50 px-3 py-1 rounded-full">{sport.type}</span>
+            <div className="text-gold mb-6 group-hover:scale-110 transition-transform">{sport.icon}</div>
+            <h3 className="text-xl font-bold mb-3 text-white tracking-wide">{sport.name}</h3>
+            <span className="text-xs text-neon-blue uppercase tracking-widest font-semibold bg-[#00f3ff]/10 px-3 py-1.5 rounded-full">{sport.type}</span>
           </motion.div>
         ))}
       </div>

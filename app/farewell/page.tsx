@@ -11,8 +11,10 @@ const guests = [
 
 export default function FarewellPage() {
   return (
-    <div className="min-h-screen p-8 max-w-5xl mx-auto">
-      <div className="text-center mb-16">
+    <div className="min-h-screen p-8 pt-32 max-w-5xl mx-auto relative overflow-hidden">
+      {/* Background Glow */}
+      <div className="absolute top-[30%] right-[-10%] w-[300px] h-[300px] bg-neon-blue/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="text-center mb-16 relative z-10">
         <h3 className="text-gold tracking-[0.4em] uppercase text-sm mb-4">Chapter III</h3>
         <h1 className="text-4xl md:text-5xl font-serif font-bold text-gold mb-4">The Farewell</h1>
         <p className="text-xl text-gray-300 font-serif italic">Honoring the Memories. Welcoming New Beginnings.</p>
@@ -24,9 +26,9 @@ export default function FarewellPage() {
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
-          className="bg-charcoal/50 border border-gold/20 p-8 rounded-xl"
+          className="glass-panel p-8 rounded-2xl relative z-10"
         >
-          <h2 className="text-2xl font-serif text-gold mb-8">Event Details</h2>
+          <h2 className="text-2xl font-serif text-white mb-8">Event Details</h2>
           
           <div className="space-y-8">
             <div className="flex items-start gap-4">
@@ -92,7 +94,7 @@ export default function FarewellPage() {
               <motion.div 
                 key={i}
                 whileHover={{ x: 10 }}
-                className="bg-gradient-to-r from-charcoal to-black border-l-4 border-gold p-6 rounded-r-xl"
+                className="glass-panel border-l-4 border-l-gold p-6 rounded-r-xl"
               >
                 <div className="text-xs text-gold/80 uppercase tracking-widest mb-1">{guest.type}</div>
                 <h3 className="text-xl font-bold text-white mb-1">{guest.name}</h3>
