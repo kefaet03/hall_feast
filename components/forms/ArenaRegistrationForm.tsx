@@ -22,7 +22,8 @@ const baseSchema = z.object({
     'Football',
     'eFootball',
     'Cricket',
-    'Table Tennis',
+    'Table Tennis (Individual)',
+    'Table Tennis (Duo)',
     'Carrom',
     '29 Cards',
     'Chess',
@@ -35,7 +36,7 @@ const baseSchema = z.object({
 const registrationSchema = z.discriminatedUnion('sport', [
   // Individual Sports
   baseSchema.extend({
-    sport: z.enum(['eFootball', 'Table Tennis', 'Chess', 'Seerah Quiz']),
+    sport: z.enum(['eFootball', 'Table Tennis (Individual)', 'Chess', 'Seerah Quiz']),
     captain: playerSchema,
   }),
   // Duo (Carrom - 2 players total)
@@ -50,8 +51,14 @@ const registrationSchema = z.discriminatedUnion('sport', [
     sport: z.literal('29 Cards'),
     teamName: z.string().min(2, 'Team Name required'),
     captain: playerSchema,
-    members: z.array(playerSchema).length(3, '29 Cards requires exactly 3 partners'),
+    members: z.array(playerSchema).length(1, '29 Cards requires exactly 1 partner'),
   }),
+  // Duo (Table Tennis Duo - 2 players total)
+  baseSchema.extend({
+    sport: z.literal('Table Tennis (Duo)'),
+    teamName: z.string().min(2, 'Team Name required'),
+    captain: playerSchema,
+    members: z.array(playerSchema).length(1, 'Requires exactly 1 partner'),
   // Major Team (Football, Cricket - 12 players total)
   baseSchema.extend({
     sport: z.enum(['Football', 'Cricket']),
@@ -93,8 +100,7 @@ export default function ArenaRegistrationForm({ initialSport = 'Football', onClo
   // Handle dynamic member fields based on sport selection
   useEffect(() => {
     let requiredMembers = 0;
-    if (selectedSport === 'Carrom') requiredMembers = 1;
-    else if (selectedSport === '29 Cards') requiredMembers = 3;
+    if (selectedSport === 'Carrom' || selectedSport === '29 Cards' || selectedSport === 'Table Tennis (Duo)') requiredMembers = 1;
     else if (selectedSport === 'Football' || selectedSport === 'Cricket') requiredMembers = 11;
 
     // Reset members array to correct length
@@ -134,7 +140,7 @@ export default function ArenaRegistrationForm({ initialSport = 'Football', onClo
     }
   };
 
-  const isTeamSport = ['Carrom', '29 Cards', 'Football', 'Cricket'].includes(selectedSport);
+  const isTeamSport = ['Carrom', '29 Cards', 'Table Tennis (Duo)', 'Football', 'Cricket'].includes(selectedSport as any);
 
   return (
     <motion.div 

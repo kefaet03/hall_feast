@@ -4,17 +4,18 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Sport } from '@/types';
 import ArenaRegistrationForm from '@/components/forms/ArenaRegistrationForm';
-import { Trophy, Gamepad2, Target, Dices, Layers, Crown, BrainCircuit, TableProperties } from 'lucide-react';
+import { Trophy, Gamepad2, Target, Dices, Layers, Crown, BookOpen, TableProperties } from 'lucide-react';
 
 const sports: { name: Sport; icon: React.ReactNode; type: string }[] = [
   { name: 'Football', icon: <Trophy size={40} />, type: 'Major Team (12)' },
   { name: 'Cricket', icon: <Target size={40} />, type: 'Major Team (12)' },
   { name: 'eFootball', icon: <Gamepad2 size={40} />, type: 'Individual' },
-  { name: 'Table Tennis', icon: <TableProperties size={40} />, type: 'Individual' },
+  { name: 'Table Tennis (Individual)' as any, icon: <TableProperties size={40} />, type: 'Individual' },
+  { name: 'Table Tennis (Duo)' as any, icon: <TableProperties size={40} />, type: 'Duo (2)' },
   { name: 'Carrom', icon: <Dices size={40} />, type: 'Duo (2)' },
-  { name: '29 Cards', icon: <Layers size={40} />, type: 'Small Team (4)' },
+  { name: '29 Cards', icon: <Layers size={40} />, type: 'Duo (2)' },
   { name: 'Chess', icon: <Crown size={40} />, type: 'Individual' },
-  { name: 'Seerah Quiz', icon: <BrainCircuit size={40} />, type: 'Individual' },
+  { name: 'Seerah Quiz', icon: <BookOpen size={40} />, type: 'Individual' },
 ];
 
 export default function ArenaPage() {
