@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 // import { createClient } from '@/lib/supabase';
 // import { ArchiveImage } from '@/types';
@@ -18,7 +18,7 @@ const mockImages = [
 
 export default function ArchivePage() {
   const [images, setImages] = useState(mockImages); // Replace with state of type ArchiveImage[]
-  const [isLoading, setIsLoading] = useState(false);
+  const isLoading = false;
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   /* 

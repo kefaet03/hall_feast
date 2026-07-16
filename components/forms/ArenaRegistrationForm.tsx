@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { useForm, useFieldArray } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 // import { toast } from 'sonner'; // Will be installed later
 import { Sport } from '@/types';
 // import { createClient } from '@/lib/supabase'; // Will be used for DB insertion
@@ -83,7 +83,7 @@ export default function ArenaRegistrationForm({ initialSport = 'Football', onClo
   });
 
   const { control, watch, handleSubmit, setValue } = form;
-  const { fields, append, remove } = useFieldArray({
+  const { fields } = useFieldArray({
     control,
     name: 'members',
   });
@@ -178,9 +178,8 @@ export default function ArenaRegistrationForm({ initialSport = 'Football', onClo
                 {...form.register('teamName' as any)} 
                 className="w-full bg-black/50 border border-gray-700 rounded p-2 text-white focus:border-[#D4AF37] outline-none transition-colors"
               />
-              {/* @ts-ignore - Dynamic key access */}
-              {form.formState.errors.teamName && (
-                <p className="text-red-400 text-sm mt-1">{form.formState.errors.teamName?.message}</p>
+              {(form.formState.errors as any).teamName && (
+                <p className="text-red-400 text-sm mt-1">{(form.formState.errors as any).teamName?.message as string}</p>
               )}
             </div>
           </div>
@@ -230,10 +229,8 @@ export default function ArenaRegistrationForm({ initialSport = 'Football', onClo
                 </div>
               </div>
             ))}
-            {/* @ts-ignore */}
-            {form.formState.errors.members?.root && (
-               // @ts-ignore
-              <p className="text-red-400 text-sm mt-1">{form.formState.errors.members.root.message}</p>
+            {(form.formState.errors as any).members?.root && (
+              <p className="text-red-400 text-sm mt-1">{(form.formState.errors as any).members.root.message as string}</p>
             )}
           </div>
         )}
