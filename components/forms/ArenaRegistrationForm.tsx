@@ -5,9 +5,9 @@ import { useForm, useFieldArray } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { motion } from 'framer-motion';
-// import { toast } from 'sonner'; // Will be installed later
+import { toast } from 'sonner';
 import { Sport } from '@/types';
-// import { createClient } from '@/lib/supabase'; // Will be used for DB insertion
+import { createClient } from '@/lib/supabase';
 
 // --- ZOD SCHEMAS ---
 
@@ -108,30 +108,27 @@ export default function ArenaRegistrationForm({ initialSport = 'Football', onClo
   const onSubmit = async (data: RegistrationFormValues) => {
     setIsSubmitting(true);
     try {
-      // const supabase = createClient();
-      // const { error } = await supabase.from('registrations').insert({
-      //   sport: data.sport,
-      //   team_name: 'teamName' in data ? data.teamName : null,
-      //   captain_details: data.captain,
-      //   team_members: 'members' in data ? data.members : null,
-      //   whatsapp_number: data.whatsappNumber
-      // });
+      const supabase = createClient();
+      const { error } = await supabase.from('registrations').insert({
+        sport: data.sport,
+        team_name: 'teamName' in data ? data.teamName : null,
+        captain_name: data.captain.name,
+        whatsapp: data.whatsappNumber,
+        members: {
+          captain: data.captain,
+          others: 'members' in data ? data.members : []
+        }
+      });
 
-      // if (error) throw error;
+      if (error) throw error;
       
-      // toast.success('Registration successful! Join the WhatsApp group.');
+      toast.success('Registration successful! See you at The Arena.');
       console.log('Submitted Data:', data);
-      
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      // Provide WhatsApp link logic here based on sport
-      // window.open('https://chat.whatsapp.com/YOUR_GROUP_LINK', '_blank');
       
       onClose();
     } catch (error) {
       console.error(error);
-      // toast.error('Registration failed. Please try again.');
+      toast.error('Registration failed. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
