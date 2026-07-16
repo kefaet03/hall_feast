@@ -111,7 +111,7 @@ export default function ArenaRegistrationForm({ initialSport = 'Football', onClo
       const supabase = createClient();
       const { error } = await supabase.from('registrations').insert({
         sport: data.sport,
-        team_name: 'teamName' in data ? data.teamName : null,
+        team_name: 'teamName' in data && data.teamName ? data.teamName : 'Individual/N/A',
         captain_name: data.captain.name,
         whatsapp: data.whatsappNumber,
         members: {
