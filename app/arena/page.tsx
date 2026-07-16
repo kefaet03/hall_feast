@@ -23,8 +23,8 @@ export default function ArenaPage() {
   return (
     <div className="min-h-screen p-8 max-w-7xl mx-auto">
       <div className="text-center mb-16">
-        <h1 className="text-4xl md:text-5xl font-serif font-bold text-gold mb-4">Chapter I: The Arena</h1>
-        <p className="text-xl text-gray-300">Step onto the field of glory. Register for your event below.</p>
+        <h1 className="text-4xl md:text-5xl font-script text-gold mb-4 text-7xl">The Arena</h1>
+        <p className="text-xl text-gray-600">Step onto the field of glory. Register for your event below.</p>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -36,11 +36,11 @@ export default function ArenaPage() {
             transition={{ delay: index * 0.1 }}
             whileHover={{ y: -5, scale: 1.05 }}
             onClick={() => setSelectedSport(sport.name)}
-            className="bg-charcoal border border-gold/30 rounded-xl p-8 flex flex-col items-center justify-center text-center cursor-pointer hover:border-gold hover:shadow-[0_0_20px_rgba(212,175,55,0.2)] transition-all"
+            className="bg-white border border-gold/30 shadow-sm rounded-xl p-8 flex flex-col items-center justify-center text-center cursor-pointer hover:border-gold hover:shadow-md transition-all"
           >
             <div className="text-gold mb-4">{sport.icon}</div>
-            <h3 className="text-xl font-bold mb-2">{sport.name}</h3>
-            <span className="text-sm text-gray-400 bg-black/50 px-3 py-1 rounded-full">{sport.type}</span>
+            <h3 className="text-2xl font-script mb-2">{sport.name}</h3>
+            <span className="text-sm text-gray-600 bg-gray-100 px-3 py-1 rounded-full">{sport.type}</span>
           </motion.div>
         ))}
       </div>

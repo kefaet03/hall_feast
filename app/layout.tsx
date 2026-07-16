@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
+import { Inter, Playfair_Display, Great_Vibes } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"], variable: '--font-inter' });
 const playfair = Playfair_Display({ subsets: ["latin"], variable: '--font-playfair' });
+const greatVibes = Great_Vibes({ weight: "400", subsets: ["latin"], variable: '--font-script' });
 
 export const metadata: Metadata = {
   title: "The Final Bell '20",
@@ -16,11 +17,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
+    <html lang="en" className={`${inter.variable} ${playfair.variable} ${greatVibes.variable}`}>
       <body className="font-sans bg-background text-foreground min-h-screen selection:bg-gold/30 selection:text-gold">
         {/* Navigation Bar will be inserted here */}
-        <nav className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-gold/20 px-6 py-4 flex justify-between items-center">
-          <div className="font-serif text-xl text-gold font-bold">The Final Bell '20</div>
+        <nav className="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-md border-b border-gold/20 px-6 py-4 flex justify-between items-center shadow-sm">
+          <div className="font-script text-3xl text-charcoal font-bold">The Final Bell '20</div>
           <div className="flex gap-6 text-sm tracking-wide">
             <a href="/" className="hover:text-gold transition-colors">Home</a>
             <a href="/arena" className="hover:text-gold transition-colors">The Arena</a>
