@@ -21,33 +21,55 @@ export default function FeastPage() {
 
           <div className="w-16 h-[1px] bg-gold mx-auto mb-12"></div>
 
-          <div className="space-y-12 font-serif">
-            <div>
-              <h2 className="text-2xl text-gold mb-6 italic">Appetizers</h2>
-              <p className="text-lg text-gray-300">Crispy Chicken Wontons</p>
-              <p className="text-sm text-gray-500 mt-2">with Sweet Chili Dip</p>
+          <div className="flex flex-col md:flex-row gap-12 items-center justify-center">
+            {/* Menu Image Placeholder */}
+            <div className="w-full md:w-1/2 rounded-xl overflow-hidden border border-gold/30 shadow-[0_0_30px_rgba(229,192,123,0.15)]">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img 
+                src="/images/feast-menu.png" 
+                alt="Feast Menu Platter" 
+                className="w-full h-auto object-cover hover:scale-105 transition-transform duration-700"
+                onError={(e) => {
+                  e.currentTarget.src = 'https://placehold.co/600x400/121216/D4AF37?text=Feast+Platter';
+                }}
+              />
             </div>
 
-            <div className="w-8 h-[1px] bg-gold/30 mx-auto"></div>
-
-            <div>
-              <h2 className="text-2xl text-gold mb-6 italic">Main Course</h2>
-              <p className="text-lg text-gray-300">Kacchi Biryani (Mutton)</p>
-              <p className="text-sm text-gray-500 mt-2">Served with Raita & Borhani</p>
-              <p className="text-lg text-gray-300 mt-4">Chicken Roast</p>
-            </div>
-
-            <div className="w-8 h-[1px] bg-gold/30 mx-auto"></div>
-
-            <div>
-              <h2 className="text-2xl text-gold mb-6 italic">Desserts</h2>
-              <p className="text-lg text-gray-300">Traditional Jorda</p>
-              <p className="text-sm text-gray-500 mt-2">with mini Gulab Jamun</p>
+            {/* Menu Items */}
+            <div className="w-full md:w-1/2 space-y-6 font-serif text-left">
+              <h2 className="text-3xl text-gold mb-8 italic text-center md:text-left border-b border-gold/20 pb-4">The Menu</h2>
+              
+              <ul className="space-y-4">
+                <li className="flex justify-between items-end border-b border-white/10 pb-2">
+                  <span className="text-xl text-gray-200">Khichuri</span>
+                  <span className="text-lg text-gold/80">খিচুড়ি</span>
+                </li>
+                <li className="flex justify-between items-end border-b border-white/10 pb-2">
+                  <span className="text-xl text-gray-200">Chicken Kosha</span>
+                  <span className="text-lg text-gold/80">চিকেন কষা</span>
+                </li>
+                <li className="flex justify-between items-end border-b border-white/10 pb-2">
+                  <span className="text-xl text-gray-200">Begun Vaji</span>
+                  <span className="text-lg text-gold/80">বেগুন ভাজি</span>
+                </li>
+                <li className="flex justify-between items-end border-b border-white/10 pb-2">
+                  <span className="text-xl text-gray-200">Alu Vorta</span>
+                  <span className="text-lg text-gold/80">আলু ভর্তা</span>
+                </li>
+                <li className="flex justify-between items-end border-b border-white/10 pb-2">
+                  <span className="text-xl text-gray-200">Achar</span>
+                  <span className="text-lg text-gold/80">আচার</span>
+                </li>
+                <li className="flex justify-between items-end border-b border-white/10 pb-2">
+                  <span className="text-xl text-gray-200">Fresh Salad</span>
+                  <span className="text-lg text-gold/80">সালাদ</span>
+                </li>
+              </ul>
             </div>
           </div>
 
           <div className="mt-16 text-gold/60 text-sm tracking-widest uppercase">
-            23 July, 2026 • 1:30 PM
+            23 July, 2026 • 1:00 PM
           </div>
         </div>
       </motion.div>
