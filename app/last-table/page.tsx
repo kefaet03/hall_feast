@@ -21,26 +21,83 @@ export default function LastTablePage() {
 
           <div className="w-16 h-[1px] bg-gold mx-auto mb-12"></div>
 
-          <div className="space-y-12 font-serif">
-            <div>
-              <h2 className="text-2xl text-gold mb-6 italic">The Spread</h2>
-              <p className="text-lg text-gray-300">Plain Rice</p>
-              <p className="text-lg text-gray-300 mt-4">Beef Bhuna</p>
-              <p className="text-lg text-gray-300 mt-4">Mixed Vegetable</p>
-              <p className="text-lg text-gray-300 mt-4">Thick Dal</p>
+          <div className="flex flex-col md:flex-row gap-12 items-center justify-center">
+            {/* Menu Image Placeholder */}
+            <div className="w-full md:w-1/2 rounded-xl overflow-hidden border border-gold/30 shadow-[0_0_30px_rgba(229,192,123,0.15)]">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img 
+                src="/images/last-table-menu.png" 
+                alt="The Last Table Menu" 
+                className="w-full h-auto object-cover hover:scale-105 transition-transform duration-700"
+                onError={(e) => {
+                  e.currentTarget.src = 'https://placehold.co/600x400/121216/D4AF37?text=Last+Table+Platter';
+                }}
+              />
             </div>
 
-            <div className="w-8 h-[1px] bg-gold/30 mx-auto"></div>
-
-            <div>
-              <h2 className="text-2xl text-gold mb-6 italic">Sweet Ending</h2>
-              <p className="text-lg text-gray-300">Mishti Doi</p>
-              <p className="text-sm text-gray-500 mt-2">Bogra Special</p>
+            {/* Menu Items */}
+            <div className="w-full md:w-1/2 space-y-6 font-serif text-left max-h-[500px] overflow-y-auto custom-scrollbar pr-4">
+              <h2 className="text-3xl text-gold mb-8 italic text-center md:text-left border-b border-gold/20 pb-4">The Menu</h2>
+              
+              <ul className="space-y-4">
+                <li className="flex justify-between items-end border-b border-white/10 pb-2">
+                  <span className="text-lg md:text-xl text-gray-200">Polao</span>
+                  <span className="text-md md:text-lg text-gold/80">পোলাও</span>
+                </li>
+                <li className="flex justify-between items-end border-b border-white/10 pb-2">
+                  <span className="text-lg md:text-xl text-gray-200">Roast (Sonali)</span>
+                  <span className="text-md md:text-lg text-gold/80">রোস্ট (সোনালী)</span>
+                </li>
+                <li className="flex justify-between items-end border-b border-white/10 pb-2">
+                  <span className="text-lg md:text-xl text-gray-200">Beef</span>
+                  <span className="text-md md:text-lg text-gold/80">গরুর মাংস</span>
+                </li>
+                <li className="flex justify-between items-end border-b border-white/10 pb-2">
+                  <span className="text-lg md:text-xl text-gray-200">Egg</span>
+                  <span className="text-md md:text-lg text-gold/80">ডিম</span>
+                </li>
+                <li className="flex justify-between items-end border-b border-white/10 pb-2">
+                  <span className="text-lg md:text-xl text-gray-200">Dal</span>
+                  <span className="text-md md:text-lg text-gold/80">ডাল</span>
+                </li>
+                <li className="flex justify-between items-end border-b border-white/10 pb-2">
+                  <span className="text-lg md:text-xl text-gray-200">Prawn</span>
+                  <span className="text-md md:text-lg text-gold/80">চিংড়ি</span>
+                </li>
+                <li className="flex justify-between items-end border-b border-white/10 pb-2">
+                  <span className="text-lg md:text-xl text-gray-200">Kabab</span>
+                  <span className="text-md md:text-lg text-gold/80">কাবাব</span>
+                </li>
+                <li className="flex justify-between items-end border-b border-white/10 pb-2">
+                  <span className="text-lg md:text-xl text-gray-200">Chinese Vegetable</span>
+                  <span className="text-md md:text-lg text-gold/80">চাইনিজ ভেজিটেবল</span>
+                </li>
+                <li className="flex justify-between items-end border-b border-white/10 pb-2">
+                  <span className="text-lg md:text-xl text-gray-200">Doi</span>
+                  <span className="text-md md:text-lg text-gold/80">দই</span>
+                </li>
+                <li className="flex justify-between items-end border-b border-white/10 pb-2">
+                  <span className="text-lg md:text-xl text-gray-200">Mishti</span>
+                  <span className="text-md md:text-lg text-gold/80">মিষ্টি</span>
+                </li>
+                <li className="flex justify-between items-end border-b border-white/10 pb-2">
+                  <span className="text-lg md:text-xl text-gray-200">Drinks</span>
+                  <span className="text-md md:text-lg text-gold/80">ড্রিংকস</span>
+                </li>
+                <li className="flex justify-between items-end border-b border-white/10 pb-2">
+                  <span className="text-lg md:text-xl text-gray-200">Lemon</span>
+                  <span className="text-md md:text-lg text-gold/80">লেবু</span>
+                </li>
+                <li className="flex justify-between items-end border-b border-white/10 pb-2">
+                  <span className="text-lg md:text-xl text-gray-200">Salad</span>
+                  <span className="text-md md:text-lg text-gold/80">সালাদ</span>
+                </li>
+              </ul>
             </div>
           </div>
 
           <div className="mt-16 text-gold/60 text-sm tracking-widest uppercase">
-            23 July, 2026 • 9:30 PM
+            23 July, 2026 • 8:00 PM
           </div>
         </div>
       </motion.div>
