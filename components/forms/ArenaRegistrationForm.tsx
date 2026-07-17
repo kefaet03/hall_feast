@@ -146,7 +146,7 @@ export default function ArenaRegistrationForm({ initialSport = 'Football', onClo
 
   // MAPPING FOR WHATSAPP LINKS
   // Update these URLs with the actual WhatsApp Group invite links
-  const whatsappLinks: Record<string, string> = {
+  const whatsappLinks: { [key: string]: string } = {
     'Football': 'https://chat.whatsapp.com/YOUR_FOOTBALL_LINK',
     'eFootball': 'https://chat.whatsapp.com/YOUR_EFOOTBALL_LINK',
     'Cricket': 'https://chat.whatsapp.com/YOUR_CRICKET_LINK',
