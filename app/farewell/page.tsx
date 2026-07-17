@@ -5,8 +5,9 @@ import { CalendarClock, MapPin } from 'lucide-react';
 
 const guests = [
   { name: 'Prof. Dr. S. M. Abdur Razzak', role: 'Vice-Chancellor, RUET', type: 'Chief Guest' },
-  { name: 'Dr. Md. Ali Hossain', role: 'Hall Provost', type: 'Special Guest' },
-  { name: 'Engr. Rakibul Islam', role: 'Alumni Representative', type: 'Honored Guest' },
+  { name: 'Dr. Md Rabiul Islam Sarker', role: 'Hall Provost', type: 'Special Guest' },
+  { name: 'Dr. Md. Sanowar Hossain', role: 'Assistant Provost', type: 'Honored Guest' },
+  { name: 'Jahid Hasan', role: 'Assistant Provost', type: 'Honored Guest' },
 ];
 
 export default function FarewellPage() {
@@ -22,14 +23,14 @@ export default function FarewellPage() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
         {/* Timeline & Details */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
           className="glass-panel p-8 rounded-2xl relative z-10"
         >
           <h2 className="text-2xl font-serif text-white mb-8">Event Details</h2>
-          
+
           <div className="space-y-8">
             <div className="flex items-start gap-4">
               <div className="p-3 bg-gold/10 rounded-full text-gold">
@@ -83,7 +84,7 @@ export default function FarewellPage() {
         </motion.div>
 
         {/* Honored Guests */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
@@ -91,7 +92,7 @@ export default function FarewellPage() {
           <h2 className="text-2xl font-serif text-gold mb-8">Honored Guests</h2>
           <div className="space-y-4">
             {guests.map((guest, i) => (
-              <motion.div 
+              <motion.div
                 key={i}
                 whileHover={{ x: 10 }}
                 className="glass-panel border-l-4 border-l-gold p-6 rounded-r-xl"
