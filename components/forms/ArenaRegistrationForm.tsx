@@ -170,7 +170,7 @@ export default function ArenaRegistrationForm({ initialSport = 'Football', onClo
       {isSuccess ? (
         <div className="text-center py-8">
           <div className="w-20 h-20 bg-green-500/20 text-green-400 rounded-full flex items-center justify-center mx-auto mb-6 text-4xl">
-            ✓
+            &#10003;
           </div>
           <h2 className="text-3xl font-serif text-gold mb-4 tracking-wide">Registration Confirmed!</h2>
           <p className="text-gray-300 mb-8 text-lg">
