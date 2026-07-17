@@ -160,6 +160,9 @@ export default function ArenaRegistrationForm({ initialSport = 'Football', onClo
 
   const currentGroupLink = whatsappLinks[selectedSport] || '#';
 
+  const registerField = form.register as any;
+  const formErrors = form.formState.errors as any;
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -230,11 +233,11 @@ export default function ArenaRegistrationForm({ initialSport = 'Football', onClo
                 <div>
                   <label className="block text-sm mb-1">Team Name</label>
                   <input
-                    {...form.register('teamName' as any)}
+                    {...registerField('teamName')}
                     className="w-full bg-black/50 border border-gray-700 rounded p-2 text-white focus:border-[#D4AF37] outline-none transition-colors"
                   />
-                  {(form.formState.errors as any).teamName && (
-                    <p className="text-red-400 text-sm mt-1">{(form.formState.errors as any).teamName?.message as string}</p>
+                  {formErrors.teamName && (
+                    <p className="text-red-400 text-sm mt-1">{formErrors.teamName?.message}</p>
                   )}
                 </div>
               </div>
@@ -272,20 +275,20 @@ export default function ArenaRegistrationForm({ initialSport = 'Football', onClo
                   <div key={field.id} className="grid grid-cols-1 md:grid-cols-3 gap-4 items-end bg-white/5 p-4 rounded border border-white/10">
                     <div>
                       <label className="block text-xs mb-1 text-gray-400">Player {index + 2} Name</label>
-                      <input {...form.register(`members.${index}.name` as any)} className="w-full bg-black/50 border border-gray-700 rounded p-2 text-white focus:border-[#D4AF37] outline-none text-sm" />
+                      <input {...registerField(`members.${index}.name`)} className="w-full bg-black/50 border border-gray-700 rounded p-2 text-white focus:border-[#D4AF37] outline-none text-sm" />
                     </div>
                     <div>
                       <label className="block text-xs mb-1 text-gray-400">Roll</label>
-                      <input {...form.register(`members.${index}.roll` as any)} className="w-full bg-black/50 border border-gray-700 rounded p-2 text-white focus:border-[#D4AF37] outline-none text-sm" />
+                      <input {...registerField(`members.${index}.roll`)} className="w-full bg-black/50 border border-gray-700 rounded p-2 text-white focus:border-[#D4AF37] outline-none text-sm" />
                     </div>
                     <div>
                       <label className="block text-xs mb-1 text-gray-400">Room</label>
-                      <input {...form.register(`members.${index}.room` as any)} className="w-full bg-black/50 border border-gray-700 rounded p-2 text-white focus:border-[#D4AF37] outline-none text-sm" />
+                      <input {...registerField(`members.${index}.room`)} className="w-full bg-black/50 border border-gray-700 rounded p-2 text-white focus:border-[#D4AF37] outline-none text-sm" />
                     </div>
                   </div>
                 ))}
-                {(form.formState.errors as any).members?.root && (
-                  <p className="text-red-400 text-sm mt-1">{(form.formState.errors as any).members.root.message as string}</p>
+                {formErrors.members?.root && (
+                  <p className="text-red-400 text-sm mt-1">{formErrors.members.root.message}</p>
                 )}
               </div>
             )}
@@ -298,7 +301,7 @@ export default function ArenaRegistrationForm({ initialSport = 'Football', onClo
               className="w-full bg-gold text-black font-semibold py-4 rounded-xl hover:bg-gold-light transition-all disabled:opacity-50 mt-8 shadow-[0_0_20px_rgba(229,192,123,0.3)] hover:shadow-[0_0_30px_rgba(229,192,123,0.5)]"
             >
               {isSubmitting ? 'Registering...' : 'Complete Registration'}
-            </button>
+            </motion.button>
           </form>
         </>
       )}
