@@ -150,12 +150,12 @@ export default function ArenaRegistrationForm({ initialSport = 'Football', onClo
     'Football': 'https://chat.whatsapp.com/FNcXkI0Hds74ggPZpSgpJ1',
     'eFootball': 'https://chat.whatsapp.com/BkrvV264EpJEnmtZYAfQHs',
     'Cricket': 'https://chat.whatsapp.com/BL29kiFbzlv3Yfkxt8DYbz',
-    'Table Tennis (Individual)': 'https://chat.whatsapp.com/YOUR_TT_INDIVIDUAL_LINK',
-    'Table Tennis (Duo)': 'https://chat.whatsapp.com/YOUR_TT_DUO_LINK',
-    'Carrom': 'https://chat.whatsapp.com/YOUR_CARROM_LINK',
+    'Table Tennis (Individual)': 'https://chat.whatsapp.com/JGbPdpTtH7lCq8iKZHrSBE',
+    'Table Tennis (Duo)': 'https://chat.whatsapp.com/JGbPdpTtH7lCq8iKZHrSBE',
+    'Carrom': 'https://chat.whatsapp.com/JzuMLMHp4HT0S9U2lJ1d7Y',
     '29 Cards': 'https://chat.whatsapp.com/DontLQNLXR7AYg1Ft4XcbE',
     'Chess': 'https://chat.whatsapp.com/KfdRTrtbvpdLZY7KQUnL4Z',
-    'Seerah Quiz': 'https://chat.whatsapp.com/YOUR_SEERAH_LINK',
+    'Seerah Quiz': 'https://chat.whatsapp.com/K9vFjKvCJmv4nPDadDfMfk',
   };
 
   const currentGroupLink = whatsappLinks[selectedSport] || '#';
