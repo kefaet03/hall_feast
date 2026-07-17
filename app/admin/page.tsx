@@ -23,7 +23,7 @@ export default function AdminPage() {
           .from('registrations')
           .select('*')
           .order('created_at', { ascending: false });
-        
+
         if (!error && data) {
           setRegistrations(data);
         }
@@ -36,7 +36,7 @@ export default function AdminPage() {
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
     // Simulate auth
-    if (email === 'admin@ruet.ac.bd' && password === 'admin') {
+    if (email === 'ziahall@ruet.ac.bd' && password === '1234ZiaHall@') {
       setIsAuthenticated(true);
     }
   };
@@ -81,7 +81,7 @@ export default function AdminPage() {
     return (
       <div className="min-h-screen flex items-center justify-center p-6 bg-background relative overflow-hidden">
         <div className="absolute top-[20%] right-[20%] w-[300px] h-[300px] bg-gold/10 rounded-full blur-[100px] pointer-events-none" />
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           className="glass-panel p-8 rounded-2xl max-w-md w-full relative z-10"
@@ -93,22 +93,22 @@ export default function AdminPage() {
           <form onSubmit={handleLogin} className="space-y-4">
             <div>
               <label className="block text-sm mb-1 text-gray-400">Email</label>
-              <input 
-                type="email" 
+              <input
+                type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full bg-black/40 border border-gray-700 rounded p-3 text-white focus:border-gold outline-none transition-colors" 
-                required 
+                className="w-full bg-black/40 border border-gray-700 rounded p-3 text-white focus:border-gold outline-none transition-colors"
+                required
               />
             </div>
             <div>
               <label className="block text-sm mb-1 text-gray-400">Password</label>
-              <input 
-                type="password" 
+              <input
+                type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full bg-black/40 border border-gray-700 rounded p-3 text-white focus:border-gold outline-none transition-colors" 
-                required 
+                className="w-full bg-black/40 border border-gray-700 rounded p-3 text-white focus:border-gold outline-none transition-colors"
+                required
               />
             </div>
             <button type="submit" className="w-full bg-gold text-black font-bold py-3 rounded-xl hover:bg-gold-light transition-colors mt-6 shadow-[0_0_15px_rgba(229,192,123,0.3)]">
@@ -125,7 +125,7 @@ export default function AdminPage() {
       <div className="absolute top-[10%] left-[10%] w-[400px] h-[400px] bg-gold/5 rounded-full blur-[120px] pointer-events-none" />
       <div className="flex justify-between items-center mb-12 border-b border-gold/20 pb-6">
         <h1 className="text-5xl font-script text-gold">Admin Dashboard</h1>
-        <button 
+        <button
           onClick={() => setIsAuthenticated(false)}
           className="text-gray-500 hover:text-charcoal transition-colors text-sm font-medium"
         >
@@ -134,13 +134,13 @@ export default function AdminPage() {
       </div>
 
       <div className="flex gap-4 mb-8">
-        <button 
+        <button
           onClick={() => setActiveTab('registrations')}
           className={`px-6 py-3 rounded-full font-medium flex items-center gap-2 transition-colors ${activeTab === 'registrations' ? 'bg-gold text-black shadow-[0_0_15px_rgba(229,192,123,0.3)]' : 'glass-panel text-gray-400 hover:text-white'}`}
         >
           <Users size={20} /> Registrations
         </button>
-        <button 
+        <button
           onClick={() => setActiveTab('upload')}
           className={`px-6 py-3 rounded-full font-medium flex items-center gap-2 transition-colors ${activeTab === 'upload' ? 'bg-gold text-black shadow-[0_0_15px_rgba(229,192,123,0.3)]' : 'glass-panel text-gray-400 hover:text-white'}`}
         >
@@ -152,11 +152,11 @@ export default function AdminPage() {
         <div className="glass-panel p-8 rounded-2xl relative z-10">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
             <h2 className="text-xl font-serif text-gold text-3xl">Sports Registrations</h2>
-            
+
             <div className="flex flex-wrap items-center gap-4">
               <div className="flex items-center gap-2 bg-black/40 border border-gray-700 rounded-lg px-3 py-2">
                 <Filter size={16} className="text-gold" />
-                <select 
+                <select
                   value={filterSport}
                   onChange={(e) => setFilterSport(e.target.value)}
                   className="bg-transparent text-sm outline-none text-gray-300 cursor-pointer [&>option]:bg-charcoal"
@@ -167,7 +167,7 @@ export default function AdminPage() {
                 </select>
               </div>
 
-              <button 
+              <button
                 onClick={exportToCSV}
                 disabled={filteredRegistrations.length === 0}
                 className="flex items-center gap-2 bg-green-600 hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed text-white px-4 py-2 rounded text-sm font-medium transition-colors"
@@ -176,7 +176,7 @@ export default function AdminPage() {
               </button>
             </div>
           </div>
-          
+
           <div className="mt-4 border border-gold/20 rounded-xl overflow-hidden bg-black/40">
             <table className="w-full text-left text-sm">
               <thead className="bg-white/5 text-gold border-b border-gold/20">
