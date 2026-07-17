@@ -150,7 +150,7 @@ export default function ArenaRegistrationForm({ initialSport = 'Football', onClo
   const whatsappLinks: { [key: string]: string } = {
     'Football': 'https://chat.whatsapp.com/FNcXkI0Hds74ggPZpSgpJ1',
     'eFootball': 'https://chat.whatsapp.com/BkrvV264EpJEnmtZYAfQHs',
-    'FIFA': 'https://chat.whatsapp.com/YOUR_FIFA_LINK',
+    'FIFA': 'https://chat.whatsapp.com/H5K07i334kgA51LH6ubwUH',
     'Cricket': 'https://chat.whatsapp.com/BL29kiFbzlv3Yfkxt8DYbz',
     'Table Tennis (Individual)': 'https://chat.whatsapp.com/JGbPdpTtH7lCq8iKZHrSBE',
     'Table Tennis (Duo)': 'https://chat.whatsapp.com/JGbPdpTtH7lCq8iKZHrSBE',
