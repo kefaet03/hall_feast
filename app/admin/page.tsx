@@ -47,8 +47,16 @@ export default function AdminPage() {
   }, [registrations]);
 
   const filteredRegistrations = useMemo(() => {
-    if (filterSport === 'All') return registrations;
-    return registrations.filter(r => r.sport === filterSport);
+    let filtered = filterSport === 'All' ? registrations : registrations.filter(r => r.sport === filterSport);
+    
+    // Deduplicate: keep only the most recent registration for a given sport + whatsapp combination
+    const seen = new Set();
+    return filtered.filter(r => {
+      const key = `${r.sport}-${r.whatsapp}`;
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
   }, [registrations, filterSport]);
 
   const exportToCSV = () => {
