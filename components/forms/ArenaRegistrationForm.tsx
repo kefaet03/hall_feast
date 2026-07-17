@@ -300,6 +300,7 @@ export default function ArenaRegistrationForm({ initialSport = 'Football', onClo
           {isSubmitting ? 'Registering...' : 'Complete Registration'}
           </button>
         </form>
+        </>
       )}
     </motion.div>
   );
