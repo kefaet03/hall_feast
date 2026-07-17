@@ -85,14 +85,16 @@ export default function LastTablePage() {
                   <span className="text-md md:text-lg text-gold/80">ড্রিংকস</span>
                 </li>
                 <li className="flex justify-between items-end border-b border-white/10 pb-2">
-                  <span className="text-lg md:text-xl text-gray-200">Lemon</span>
-                  <span className="text-md md:text-lg text-gold/80">লেবু</span>
-                </li>
-                <li className="flex justify-between items-end border-b border-white/10 pb-2">
                   <span className="text-lg md:text-xl text-gray-200">Salad</span>
                   <span className="text-md md:text-lg text-gold/80">সালাদ</span>
                 </li>
               </ul>
+
+              <div className="mt-8 text-center md:text-left">
+                <span className="text-gold italic font-bold tracking-widest uppercase text-sm animate-pulse">
+                  Surprise items are waiting....
+                </span>
+              </div>
             </div>
           </div>
 

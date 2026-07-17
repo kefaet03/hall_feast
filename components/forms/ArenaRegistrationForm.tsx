@@ -78,6 +78,7 @@ interface ArenaRegistrationFormProps {
 
 export default function ArenaRegistrationForm({ initialSport = 'Football', onClose }: ArenaRegistrationFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
 
   const form = useForm<RegistrationFormValues>({
     resolver: zodResolver(registrationSchema),
@@ -132,7 +133,7 @@ export default function ArenaRegistrationForm({ initialSport = 'Football', onClo
       toast.success('Registration successful! See you at The Arena.');
       console.log('Submitted Data:', data);
       
-      onClose();
+      setIsSuccess(true);
     } catch (error) {
       console.error(error);
       toast.error('Registration failed. Please try again.');
@@ -143,6 +144,22 @@ export default function ArenaRegistrationForm({ initialSport = 'Football', onClo
 
   const isTeamSport = ['Carrom', '29 Cards', 'Table Tennis (Duo)', 'Football', 'Cricket'].includes(selectedSport as any);
 
+  // MAPPING FOR WHATSAPP LINKS
+  // Update these URLs with the actual WhatsApp Group invite links
+  const whatsappLinks: Record<string, string> = {
+    'Football': 'https://chat.whatsapp.com/YOUR_FOOTBALL_LINK',
+    'eFootball': 'https://chat.whatsapp.com/YOUR_EFOOTBALL_LINK',
+    'Cricket': 'https://chat.whatsapp.com/YOUR_CRICKET_LINK',
+    'Table Tennis (Individual)': 'https://chat.whatsapp.com/YOUR_TT_INDIVIDUAL_LINK',
+    'Table Tennis (Duo)': 'https://chat.whatsapp.com/YOUR_TT_DUO_LINK',
+    'Carrom': 'https://chat.whatsapp.com/YOUR_CARROM_LINK',
+    '29 Cards': 'https://chat.whatsapp.com/YOUR_29CARDS_LINK',
+    'Chess': 'https://chat.whatsapp.com/YOUR_CHESS_LINK',
+    'Seerah Quiz': 'https://chat.whatsapp.com/YOUR_SEERAH_LINK',
+  };
+
+  const currentGroupLink = whatsappLinks[selectedSport] || '#';
+
   return (
     <motion.div 
       initial={{ opacity: 0, y: 20 }}
@@ -150,12 +167,46 @@ export default function ArenaRegistrationForm({ initialSport = 'Football', onClo
       exit={{ opacity: 0, y: -20 }}
       className="glass-panel border-gold/30 rounded-2xl p-8 w-full max-w-2xl mx-auto max-h-[85vh] overflow-y-auto custom-scrollbar text-[#FAF9F6] relative shadow-2xl"
     >
-      <div className="flex justify-between items-center mb-8 border-b border-gold/20 pb-4">
-        <h2 className="text-2xl font-serif text-gold tracking-wide">Register for <span className="font-bold">{selectedSport}</span></h2>
-        <button onClick={onClose} className="text-gray-400 hover:text-white transition-colors bg-white/5 hover:bg-white/10 rounded-full w-8 h-8 flex items-center justify-center">&times;</button>
-      </div>
+      {isSuccess ? (
+        <div className="text-center py-8">
+          <div className="w-20 h-20 bg-green-500/20 text-green-400 rounded-full flex items-center justify-center mx-auto mb-6 text-4xl">
+            ✓
+          </div>
+          <h2 className="text-3xl font-serif text-gold mb-4 tracking-wide">Registration Confirmed!</h2>
+          <p className="text-gray-300 mb-8 text-lg">
+            You have successfully registered for {selectedSport}.
+          </p>
+          
+          <div className="bg-white/5 border border-gold/30 rounded-xl p-6 mb-8 text-left">
+            <h3 className="text-xl font-bold text-white mb-2">Mandatory Next Step:</h3>
+            <p className="text-gray-300 mb-4 text-sm">
+              It is strictly mandatory to join the official WhatsApp group for {selectedSport} to receive all fixtures, rules, and crucial updates. Players not in the group may miss important announcements.
+            </p>
+            <a 
+              href={currentGroupLink} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-block w-full text-center bg-[#25D366] text-white font-bold py-3 rounded-lg hover:bg-[#128C7E] transition-colors shadow-lg"
+            >
+              Join WhatsApp Group
+            </a>
+          </div>
 
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+          <button 
+            onClick={onClose}
+            className="text-gray-400 hover:text-white underline transition-colors"
+          >
+            Close and return to Arena
+          </button>
+        </div>
+      ) : (
+        <>
+          <div className="flex justify-between items-center mb-8 border-b border-gold/20 pb-4">
+            <h2 className="text-2xl font-serif text-gold tracking-wide">Register for <span className="font-bold">{selectedSport}</span></h2>
+            <button onClick={onClose} className="text-gray-400 hover:text-white transition-colors bg-white/5 hover:bg-white/10 rounded-full w-8 h-8 flex items-center justify-center">&times;</button>
+          </div>
+
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
         
         {/* Contact Info */}
         <div className="space-y-4">
@@ -247,8 +298,9 @@ export default function ArenaRegistrationForm({ initialSport = 'Football', onClo
           className="w-full bg-gold text-black font-semibold py-4 rounded-xl hover:bg-gold-light transition-all disabled:opacity-50 mt-8 shadow-[0_0_20px_rgba(229,192,123,0.3)] hover:shadow-[0_0_30px_rgba(229,192,123,0.5)]"
         >
           {isSubmitting ? 'Registering...' : 'Complete Registration'}
-        </motion.button>
-      </form>
+          </button>
+        </form>
+      )}
     </motion.div>
   );
 }
