@@ -1,6 +1,7 @@
 export type Sport =
   | 'Football'
   | 'eFootball'
+  | 'FIFA'
   | 'Cricket'
   | 'Table Tennis (Individual)'
   | 'Table Tennis (Duo)'

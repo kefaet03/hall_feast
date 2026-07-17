@@ -4,12 +4,13 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Sport } from '@/types';
 import ArenaRegistrationForm from '@/components/forms/ArenaRegistrationForm';
-import { Trophy, Gamepad2, Target, Dices, Layers, Crown, BookOpen, TableProperties } from 'lucide-react';
+import { Trophy, Gamepad2, Target, Dices, Layers, Crown, BookOpen, TableProperties, MonitorPlay } from 'lucide-react';
 
 const sports: { name: Sport; icon: React.ReactNode; type: string }[] = [
   { name: 'Football', icon: <Trophy size={40} />, type: 'Major Team (12)' },
   { name: 'Cricket', icon: <Target size={40} />, type: 'Major Team (12)' },
   { name: 'eFootball', icon: <Gamepad2 size={40} />, type: 'Individual' },
+  { name: 'FIFA', icon: <MonitorPlay size={40} />, type: 'Individual' },
   { name: 'Table Tennis (Individual)' as any, icon: <TableProperties size={40} />, type: 'Individual' },
   { name: 'Table Tennis (Duo)' as any, icon: <TableProperties size={40} />, type: 'Duo (2)' },
   { name: 'Carrom', icon: <Dices size={40} />, type: 'Duo (2)' },

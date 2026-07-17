@@ -21,6 +21,7 @@ const baseSchema = z.object({
   sport: z.enum([
     'Football',
     'eFootball',
+    'FIFA',
     'Cricket',
     'Table Tennis (Individual)',
     'Table Tennis (Duo)',
@@ -36,7 +37,7 @@ const baseSchema = z.object({
 const registrationSchema = z.discriminatedUnion('sport', [
   // Individual Sports
   baseSchema.extend({
-    sport: z.enum(['eFootball', 'Table Tennis (Individual)', 'Chess', 'Seerah Quiz']),
+    sport: z.enum(['eFootball', 'FIFA', 'Table Tennis (Individual)', 'Chess', 'Seerah Quiz']),
     captain: playerSchema,
   }),
   // Duo (Carrom - 2 players total)
@@ -149,6 +150,7 @@ export default function ArenaRegistrationForm({ initialSport = 'Football', onClo
   const whatsappLinks: { [key: string]: string } = {
     'Football': 'https://chat.whatsapp.com/FNcXkI0Hds74ggPZpSgpJ1',
     'eFootball': 'https://chat.whatsapp.com/BkrvV264EpJEnmtZYAfQHs',
+    'FIFA': 'https://chat.whatsapp.com/YOUR_FIFA_LINK',
     'Cricket': 'https://chat.whatsapp.com/BL29kiFbzlv3Yfkxt8DYbz',
     'Table Tennis (Individual)': 'https://chat.whatsapp.com/JGbPdpTtH7lCq8iKZHrSBE',
     'Table Tennis (Duo)': 'https://chat.whatsapp.com/JGbPdpTtH7lCq8iKZHrSBE',
