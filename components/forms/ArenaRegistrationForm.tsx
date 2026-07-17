@@ -129,10 +129,10 @@ export default function ArenaRegistrationForm({ initialSport = 'Football', onClo
       });
 
       if (error) throw error;
-      
+
       toast.success('Registration successful! See you at The Arena.');
       console.log('Submitted Data:', data);
-      
+
       setIsSuccess(true);
     } catch (error) {
       console.error(error);
@@ -161,7 +161,7 @@ export default function ArenaRegistrationForm({ initialSport = 'Football', onClo
   const currentGroupLink = whatsappLinks[selectedSport] || '#';
 
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
@@ -176,15 +176,15 @@ export default function ArenaRegistrationForm({ initialSport = 'Football', onClo
           <p className="text-gray-300 mb-8 text-lg">
             You have successfully registered for {selectedSport}.
           </p>
-          
+
           <div className="bg-white/5 border border-gold/30 rounded-xl p-6 mb-8 text-left">
             <h3 className="text-xl font-bold text-white mb-2">Mandatory Next Step:</h3>
             <p className="text-gray-300 mb-4 text-sm">
               It is strictly mandatory to join the official WhatsApp group for {selectedSport} to receive all fixtures, rules, and crucial updates. Players not in the group may miss important announcements.
             </p>
-            <a 
-              href={currentGroupLink} 
-              target="_blank" 
+            <a
+              href={currentGroupLink}
+              target="_blank"
               rel="noopener noreferrer"
               className="inline-block w-full text-center bg-[#25D366] text-white font-bold py-3 rounded-lg hover:bg-[#128C7E] transition-colors shadow-lg"
             >
@@ -192,7 +192,7 @@ export default function ArenaRegistrationForm({ initialSport = 'Football', onClo
             </a>
           </div>
 
-          <button 
+          <button
             onClick={onClose}
             className="text-gray-400 hover:text-white underline transition-colors"
           >
@@ -207,99 +207,99 @@ export default function ArenaRegistrationForm({ initialSport = 'Football', onClo
           </div>
 
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-        
-        {/* Contact Info */}
-        <div className="space-y-4">
-          <h3 className="text-lg border-b border-[#D4AF37]/20 pb-2">Contact Info</h3>
-          <div>
-            <label className="block text-sm mb-1">WhatsApp Number</label>
-            <input 
-              {...form.register('whatsappNumber')} 
-              className="w-full bg-black/50 border border-gray-700 rounded p-2 text-white focus:border-[#D4AF37] outline-none transition-colors"
-            />
-            {form.formState.errors.whatsappNumber && (
-              <p className="text-red-400 text-sm mt-1">{form.formState.errors.whatsappNumber.message}</p>
-            )}
-          </div>
-        </div>
 
-        {/* Team Details (If applicable) */}
-        {isTeamSport && (
-          <div className="space-y-4">
-            <h3 className="text-lg border-b border-[#D4AF37]/20 pb-2">Team Details</h3>
-            <div>
-              <label className="block text-sm mb-1">Team Name</label>
-              <input 
-                {...form.register('teamName' as any)} 
-                className="w-full bg-black/50 border border-gray-700 rounded p-2 text-white focus:border-[#D4AF37] outline-none transition-colors"
-              />
-              {(form.formState.errors as any).teamName && (
-                <p className="text-red-400 text-sm mt-1">{(form.formState.errors as any).teamName?.message as string}</p>
-              )}
+            {/* Contact Info */}
+            <div className="space-y-4">
+              <h3 className="text-lg border-b border-[#D4AF37]/20 pb-2">Contact Info</h3>
+              <div>
+                <label className="block text-sm mb-1">WhatsApp Number</label>
+                <input
+                  {...form.register('whatsappNumber')}
+                  className="w-full bg-black/50 border border-gray-700 rounded p-2 text-white focus:border-[#D4AF37] outline-none transition-colors"
+                />
+                {form.formState.errors.whatsappNumber && (
+                  <p className="text-red-400 text-sm mt-1">{form.formState.errors.whatsappNumber.message}</p>
+                )}
+              </div>
             </div>
-          </div>
-        )}
 
-        {/* Captain / Individual Details */}
-        <div className="space-y-4">
-          <h3 className="text-lg border-b border-[#D4AF37]/20 pb-2">
-            {isTeamSport ? 'Captain Details' : 'Player Details'}
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div>
-              <label className="block text-sm mb-1">Name</label>
-              <input {...form.register('captain.name')} className="w-full bg-black/50 border border-gray-700 rounded p-2 text-white focus:border-[#D4AF37] outline-none" />
-              {form.formState.errors.captain?.name && <p className="text-red-400 text-sm mt-1">{form.formState.errors.captain.name.message}</p>}
-            </div>
-            <div>
-              <label className="block text-sm mb-1">Roll</label>
-              <input {...form.register('captain.roll')} className="w-full bg-black/50 border border-gray-700 rounded p-2 text-white focus:border-[#D4AF37] outline-none" />
-              {form.formState.errors.captain?.roll && <p className="text-red-400 text-sm mt-1">{form.formState.errors.captain.roll.message}</p>}
-            </div>
-            <div>
-              <label className="block text-sm mb-1">Room</label>
-              <input {...form.register('captain.room')} className="w-full bg-black/50 border border-gray-700 rounded p-2 text-white focus:border-[#D4AF37] outline-none" />
-              {form.formState.errors.captain?.room && <p className="text-red-400 text-sm mt-1">{form.formState.errors.captain.room.message}</p>}
-            </div>
-          </div>
-        </div>
-
-        {/* Additional Members */}
-        {fields.length > 0 && (
-          <div className="space-y-4">
-            <h3 className="text-lg border-b border-[#D4AF37]/20 pb-2">Squad Members</h3>
-            {fields.map((field, index) => (
-              <div key={field.id} className="grid grid-cols-1 md:grid-cols-3 gap-4 items-end bg-white/5 p-4 rounded border border-white/10">
+            {/* Team Details (If applicable) */}
+            {isTeamSport && (
+              <div className="space-y-4">
+                <h3 className="text-lg border-b border-[#D4AF37]/20 pb-2">Team Details</h3>
                 <div>
-                  <label className="block text-xs mb-1 text-gray-400">Player {index + 2} Name</label>
-                  <input {...form.register(`members.${index}.name` as any)} className="w-full bg-black/50 border border-gray-700 rounded p-2 text-white focus:border-[#D4AF37] outline-none text-sm" />
-                </div>
-                <div>
-                  <label className="block text-xs mb-1 text-gray-400">Roll</label>
-                  <input {...form.register(`members.${index}.roll` as any)} className="w-full bg-black/50 border border-gray-700 rounded p-2 text-white focus:border-[#D4AF37] outline-none text-sm" />
-                </div>
-                <div>
-                  <label className="block text-xs mb-1 text-gray-400">Room</label>
-                  <input {...form.register(`members.${index}.room` as any)} className="w-full bg-black/50 border border-gray-700 rounded p-2 text-white focus:border-[#D4AF37] outline-none text-sm" />
+                  <label className="block text-sm mb-1">Team Name</label>
+                  <input
+                    {...form.register('teamName' as any)}
+                    className="w-full bg-black/50 border border-gray-700 rounded p-2 text-white focus:border-[#D4AF37] outline-none transition-colors"
+                  />
+                  {(form.formState.errors as any).teamName && (
+                    <p className="text-red-400 text-sm mt-1">{(form.formState.errors as any).teamName?.message as string}</p>
+                  )}
                 </div>
               </div>
-            ))}
-            {(form.formState.errors as any).members?.root && (
-              <p className="text-red-400 text-sm mt-1">{(form.formState.errors as any).members.root.message as string}</p>
             )}
-          </div>
-        )}
 
-        <motion.button 
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-          type="submit" 
-          disabled={isSubmitting}
-          className="w-full bg-gold text-black font-semibold py-4 rounded-xl hover:bg-gold-light transition-all disabled:opacity-50 mt-8 shadow-[0_0_20px_rgba(229,192,123,0.3)] hover:shadow-[0_0_30px_rgba(229,192,123,0.5)]"
-        >
-          {isSubmitting ? 'Registering...' : 'Complete Registration'}
-          </button>
-        </form>
+            {/* Captain / Individual Details */}
+            <div className="space-y-4">
+              <h3 className="text-lg border-b border-[#D4AF37]/20 pb-2">
+                {isTeamSport ? 'Captain Details' : 'Player Details'}
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div>
+                  <label className="block text-sm mb-1">Name</label>
+                  <input {...form.register('captain.name')} className="w-full bg-black/50 border border-gray-700 rounded p-2 text-white focus:border-[#D4AF37] outline-none" />
+                  {form.formState.errors.captain?.name && <p className="text-red-400 text-sm mt-1">{form.formState.errors.captain.name.message}</p>}
+                </div>
+                <div>
+                  <label className="block text-sm mb-1">Roll</label>
+                  <input {...form.register('captain.roll')} className="w-full bg-black/50 border border-gray-700 rounded p-2 text-white focus:border-[#D4AF37] outline-none" />
+                  {form.formState.errors.captain?.roll && <p className="text-red-400 text-sm mt-1">{form.formState.errors.captain.roll.message}</p>}
+                </div>
+                <div>
+                  <label className="block text-sm mb-1">Room</label>
+                  <input {...form.register('captain.room')} className="w-full bg-black/50 border border-gray-700 rounded p-2 text-white focus:border-[#D4AF37] outline-none" />
+                  {form.formState.errors.captain?.room && <p className="text-red-400 text-sm mt-1">{form.formState.errors.captain.room.message}</p>}
+                </div>
+              </div>
+            </div>
+
+            {/* Additional Members */}
+            {fields.length > 0 && (
+              <div className="space-y-4">
+                <h3 className="text-lg border-b border-[#D4AF37]/20 pb-2">Squad Members</h3>
+                {fields.map((field, index) => (
+                  <div key={field.id} className="grid grid-cols-1 md:grid-cols-3 gap-4 items-end bg-white/5 p-4 rounded border border-white/10">
+                    <div>
+                      <label className="block text-xs mb-1 text-gray-400">Player {index + 2} Name</label>
+                      <input {...form.register(`members.${index}.name` as any)} className="w-full bg-black/50 border border-gray-700 rounded p-2 text-white focus:border-[#D4AF37] outline-none text-sm" />
+                    </div>
+                    <div>
+                      <label className="block text-xs mb-1 text-gray-400">Roll</label>
+                      <input {...form.register(`members.${index}.roll` as any)} className="w-full bg-black/50 border border-gray-700 rounded p-2 text-white focus:border-[#D4AF37] outline-none text-sm" />
+                    </div>
+                    <div>
+                      <label className="block text-xs mb-1 text-gray-400">Room</label>
+                      <input {...form.register(`members.${index}.room` as any)} className="w-full bg-black/50 border border-gray-700 rounded p-2 text-white focus:border-[#D4AF37] outline-none text-sm" />
+                    </div>
+                  </div>
+                ))}
+                {(form.formState.errors as any).members?.root && (
+                  <p className="text-red-400 text-sm mt-1">{(form.formState.errors as any).members.root.message as string}</p>
+                )}
+              </div>
+            )}
+
+            <motion.button
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              type="submit"
+              disabled={isSubmitting}
+              className="w-full bg-gold text-black font-semibold py-4 rounded-xl hover:bg-gold-light transition-all disabled:opacity-50 mt-8 shadow-[0_0_20px_rgba(229,192,123,0.3)] hover:shadow-[0_0_30px_rgba(229,192,123,0.5)]"
+            >
+              {isSubmitting ? 'Registering...' : 'Complete Registration'}
+            </button>
+          </form>
         </>
       )}
     </motion.div>
