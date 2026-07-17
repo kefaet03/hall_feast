@@ -60,20 +60,20 @@ export default function ArchivePage() {
               whileHover={{ y: -5 }}
               className="break-inside-avoid group relative overflow-hidden rounded-2xl glass-panel p-2 shadow-xl hover:shadow-[0_0_30px_rgba(229,192,123,0.15)] transition-all duration-300"
             >
-              <div 
+              <div
                 className="relative overflow-hidden rounded-xl cursor-pointer"
                 onClick={() => setSelectedImage(img.url)}
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={img.url} alt={img.title || 'Archive Image'} className="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-700" />
-                
+
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-between p-6">
                   <span className="text-gold font-serif text-xl font-bold tracking-wide">{img.title}</span>
                 </div>
               </div>
 
               {/* Like Button Micro-interaction */}
-              <button 
+              <button
                 className="absolute top-6 right-6 w-10 h-10 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center text-white/50 hover:text-red-500 hover:bg-black/60 transition-all opacity-0 group-hover:opacity-100 scale-90 group-hover:scale-100 hover:scale-110 active:scale-90"
                 onClick={(e) => {
                   e.stopPropagation();
@@ -94,18 +94,18 @@ export default function ArchivePage() {
       <AnimatePresence>
         {selectedImage && (
           <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 p-4 backdrop-blur-md">
-            <button 
+            <button
               className="absolute top-6 right-6 text-white hover:text-gold transition-colors z-50"
               onClick={() => setSelectedImage(null)}
             >
               <X size={32} />
             </button>
-            <motion.img 
+            <motion.img
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
-              src={selectedImage} 
-              alt="Fullscreen view" 
+              src={selectedImage}
+              alt="Fullscreen view"
               className="max-w-full max-h-[90vh] object-contain rounded border border-gold/20 shadow-2xl"
             />
           </div>

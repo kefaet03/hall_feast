@@ -147,14 +147,14 @@ export default function ArenaRegistrationForm({ initialSport = 'Football', onClo
   // MAPPING FOR WHATSAPP LINKS
   // Update these URLs with the actual WhatsApp Group invite links
   const whatsappLinks: { [key: string]: string } = {
-    'Football': 'https://chat.whatsapp.com/YOUR_FOOTBALL_LINK',
-    'eFootball': 'https://chat.whatsapp.com/YOUR_EFOOTBALL_LINK',
-    'Cricket': 'https://chat.whatsapp.com/YOUR_CRICKET_LINK',
+    'Football': 'https://chat.whatsapp.com/FNcXkI0Hds74ggPZpSgpJ1',
+    'eFootball': 'https://chat.whatsapp.com/BkrvV264EpJEnmtZYAfQHs',
+    'Cricket': 'https://chat.whatsapp.com/BL29kiFbzlv3Yfkxt8DYbz',
     'Table Tennis (Individual)': 'https://chat.whatsapp.com/YOUR_TT_INDIVIDUAL_LINK',
     'Table Tennis (Duo)': 'https://chat.whatsapp.com/YOUR_TT_DUO_LINK',
     'Carrom': 'https://chat.whatsapp.com/YOUR_CARROM_LINK',
-    '29 Cards': 'https://chat.whatsapp.com/YOUR_29CARDS_LINK',
-    'Chess': 'https://chat.whatsapp.com/YOUR_CHESS_LINK',
+    '29 Cards': 'https://chat.whatsapp.com/DontLQNLXR7AYg1Ft4XcbE',
+    'Chess': 'https://chat.whatsapp.com/KfdRTrtbvpdLZY7KQUnL4Z',
     'Seerah Quiz': 'https://chat.whatsapp.com/YOUR_SEERAH_LINK',
   };
 
