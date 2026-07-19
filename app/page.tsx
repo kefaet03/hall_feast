@@ -3,13 +3,14 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { Calendar, MapPin, Users, Trophy, GraduationCap, Clock } from 'lucide-react';
+import { Calendar, MapPin, Users, Trophy, GraduationCap, Clock, Settings } from 'lucide-react';
 
 const chapters = [
   { id: 'I', title: 'The Arena', desc: 'Sports & Games', href: '/arena', icon: Trophy },
   { id: 'II', title: 'The Feast', desc: 'Grand Lunch', href: '/feast', icon: Users },
   { id: 'III', title: 'The Farewell', desc: 'Evening Ceremony', href: '/farewell', icon: GraduationCap },
   { id: 'IV', title: 'The Last Table', desc: 'Dinner', href: '/last-table', icon: UtensilsIcon },
+  { id: 'V', title: 'Miscellaneous', desc: 'Corrections & Info', href: '/misc', icon: Settings },
 ];
 
 function UtensilsIcon(props: any) {

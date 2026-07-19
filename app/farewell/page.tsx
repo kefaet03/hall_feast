@@ -6,8 +6,8 @@ import { CalendarClock, MapPin } from 'lucide-react';
 const guests = [
   { name: 'Prof. Dr. S. M. Abdur Razzak', role: 'Vice-Chancellor, RUET', type: 'Chief Guest' },
   { name: 'Dr. Md Rabiul Islam Sarker', role: 'Hall Provost', type: 'Special Guest' },
-  { name: 'Dr. Md. Sanowar Hossain', role: 'Assistant Provost', type: 'Honored Guest' },
-  { name: 'Jahid Hasan', role: 'Assistant Provost', type: 'Honored Guest' },
+  { name: 'Dr. Md. Sanowar Hossain', role: 'Assistant Provost', type: 'Honorable Guest' },
+  { name: 'Jahid Hasan', role: 'Assistant Provost', type: 'Honorable Guest' },
 ];
 
 export default function FarewellPage() {

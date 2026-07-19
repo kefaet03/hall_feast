@@ -9,27 +9,40 @@ export default function AdminPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false); // Should check Supabase session
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [activeTab, setActiveTab] = useState<'registrations' | 'upload'>('registrations');
+  const [activeTab, setActiveTab] = useState<'registrations' | 'upload' | 'corrections'>('registrations');
   const [registrations, setRegistrations] = useState<any[]>([]);
+  const [corrections, setCorrections] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [filterSport, setFilterSport] = useState<string>('All');
 
   useEffect(() => {
-    if (isAuthenticated && activeTab === 'registrations') {
-      const fetchRegs = async () => {
+    if (isAuthenticated) {
+      const fetchData = async () => {
         setIsLoading(true);
         const supabase = createClient();
-        const { data, error } = await supabase
-          .from('registrations')
-          .select('*')
-          .order('created_at', { ascending: false });
+        
+        if (activeTab === 'registrations') {
+          const { data, error } = await supabase
+            .from('registrations')
+            .select('*')
+            .order('created_at', { ascending: false });
 
-        if (!error && data) {
-          setRegistrations(data);
+          if (!error && data) {
+            setRegistrations(data);
+          }
+        } else if (activeTab === 'corrections') {
+          const { data, error } = await supabase
+            .from('info_corrections')
+            .select('*')
+            .order('created_at', { ascending: false });
+
+          if (!error && data) {
+            setCorrections(data);
+          }
         }
         setIsLoading(false);
       };
-      fetchRegs();
+      fetchData();
     }
   }, [isAuthenticated, activeTab]);
 
@@ -79,6 +92,32 @@ export default function AdminPage() {
     const url = URL.createObjectURL(blob);
     link.setAttribute('href', url);
     link.setAttribute('download', `registrations_${filterSport.replace(/\s+/g, '_')}.csv`);
+    link.style.visibility = 'hidden';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  const exportCorrectionsToCSV = () => {
+    const headers = ['Correct Name', 'Correct Roll', 'Correct Dept', 'Correct Room No', 'Date'];
+    const rows = corrections.map(reg => [
+      reg.correct_name,
+      reg.correct_roll,
+      reg.correct_dept,
+      reg.correct_room_no,
+      new Date(reg.created_at).toLocaleDateString()
+    ]);
+
+    const csvContent = [
+      headers.join(','),
+      ...rows.map(row => row.map(cell => `"${cell}"`).join(','))
+    ].join('\n');
+
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    const url = URL.createObjectURL(blob);
+    link.setAttribute('href', url);
+    link.setAttribute('download', `info_corrections.csv`);
     link.style.visibility = 'hidden';
     document.body.appendChild(link);
     link.click();
@@ -147,6 +186,12 @@ export default function AdminPage() {
           className={`px-6 py-3 rounded-full font-medium flex items-center gap-2 transition-colors ${activeTab === 'registrations' ? 'bg-gold text-black shadow-[0_0_15px_rgba(229,192,123,0.3)]' : 'glass-panel text-gray-400 hover:text-white'}`}
         >
           <Users size={20} /> Registrations
+        </button>
+        <button
+          onClick={() => setActiveTab('corrections')}
+          className={`px-6 py-3 rounded-full font-medium flex items-center gap-2 transition-colors ${activeTab === 'corrections' ? 'bg-gold text-black shadow-[0_0_15px_rgba(229,192,123,0.3)]' : 'glass-panel text-gray-400 hover:text-white'}`}
+        >
+          <Users size={20} /> Corrections
         </button>
         <button
           onClick={() => setActiveTab('upload')}
@@ -218,6 +263,65 @@ export default function AdminPage() {
                       <td className="p-4">{reg.whatsapp}</td>
                       <td className="p-4 text-gray-500">
                         {new Date(reg.created_at).toLocaleDateString()}
+                      </td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
+
+      {activeTab === 'corrections' && (
+        <div className="glass-panel p-8 rounded-2xl relative z-10">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
+            <h2 className="text-xl font-serif text-gold text-3xl">Information Corrections</h2>
+
+            <div className="flex flex-wrap items-center gap-4">
+              <button
+                onClick={exportCorrectionsToCSV}
+                disabled={corrections.length === 0}
+                className="flex items-center gap-2 bg-green-600 hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed text-white px-4 py-2 rounded text-sm font-medium transition-colors"
+              >
+                <Download size={16} /> Export CSV
+              </button>
+            </div>
+          </div>
+
+          <div className="mt-4 border border-gold/20 rounded-xl overflow-hidden bg-black/40">
+            <table className="w-full text-left text-sm">
+              <thead className="bg-white/5 text-gold border-b border-gold/20">
+                <tr>
+                  <th className="p-4">Correct Name</th>
+                  <th className="p-4">Correct Roll</th>
+                  <th className="p-4">Correct Dept</th>
+                  <th className="p-4">Correct Room No.</th>
+                  <th className="p-4">Date</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-800">
+                {isLoading ? (
+                  <tr>
+                    <td colSpan={5} className="p-8 text-center">
+                      <Loader2 className="animate-spin text-gold w-8 h-8 mx-auto" />
+                    </td>
+                  </tr>
+                ) : corrections.length === 0 ? (
+                  <tr>
+                    <td colSpan={5} className="p-8 text-center text-gray-500">
+                      No corrections found.
+                    </td>
+                  </tr>
+                ) : (
+                  corrections.map((corr) => (
+                    <tr key={corr.id} className="hover:bg-white/5 transition-colors">
+                      <td className="p-4 font-medium">{corr.correct_name}</td>
+                      <td className="p-4">{corr.correct_roll}</td>
+                      <td className="p-4">{corr.correct_dept}</td>
+                      <td className="p-4">{corr.correct_room_no}</td>
+                      <td className="p-4 text-gray-500">
+                        {new Date(corr.created_at).toLocaleDateString()}
                       </td>
                     </tr>
                   ))
