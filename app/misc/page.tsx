@@ -15,7 +15,7 @@ export default function MiscPage() {
       
       <div className="text-center mb-16 relative z-10">
         <h1 className="text-4xl md:text-5xl font-serif font-bold text-white mb-4 tracking-wide">
-          Chapter V: <span className="text-gradient-gold">Miscellaneous</span>
+          Extra: <span className="text-gradient-gold">Miscellaneous</span>
         </h1>
         <p className="text-xl text-gray-400 font-serif italic">
           Corrections, Information & Utilities.

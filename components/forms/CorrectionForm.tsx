@@ -30,20 +30,19 @@ export default function CorrectionForm({ onClose }: { onClose: () => void }) {
 
     const { error: submitError } = await supabase
       .from('info_corrections')
-      .insert([
-        {
-          correct_name: formData.correct_name,
-          correct_roll: formData.correct_roll,
-          correct_dept: formData.correct_dept,
-          correct_room_no: formData.correct_room_no,
-        }
-      ]);
+      .insert({
+        correct_name: formData.correct_name,
+        correct_roll: formData.correct_roll,
+        correct_dept: formData.correct_dept,
+        correct_room_no: formData.correct_room_no,
+      });
 
     setIsSubmitting(false);
 
     if (submitError) {
-      console.error(submitError);
-      setError('Failed to submit correction. Please try again.');
+      console.error('Supabase Error:', submitError);
+      const errorMessage = submitError.message || JSON.stringify(submitError);
+      setError(`Failed to submit correction: ${errorMessage || 'Please try again.'}`);
     } else {
       setIsSuccess(true);
       setTimeout(() => {

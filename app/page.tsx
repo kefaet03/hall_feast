@@ -6,11 +6,11 @@ import { useEffect, useState } from 'react';
 import { Calendar, MapPin, Users, Trophy, GraduationCap, Clock, Settings } from 'lucide-react';
 
 const chapters = [
-  { id: 'I', title: 'The Arena', desc: 'Sports & Games', href: '/arena', icon: Trophy },
-  { id: 'II', title: 'The Feast', desc: 'Grand Lunch', href: '/feast', icon: Users },
-  { id: 'III', title: 'The Farewell', desc: 'Evening Ceremony', href: '/farewell', icon: GraduationCap },
-  { id: 'IV', title: 'The Last Table', desc: 'Dinner', href: '/last-table', icon: UtensilsIcon },
-  { id: 'V', title: 'Miscellaneous', desc: 'Corrections & Info', href: '/misc', icon: Settings },
+  { id: 'I', title: 'The Arena', desc: 'Sports & Games', href: '/arena', icon: Trophy, isExtra: false },
+  { id: 'II', title: 'The Feast', desc: 'Grand Lunch', href: '/feast', icon: Users, isExtra: false },
+  { id: 'III', title: 'The Farewell', desc: 'Evening Ceremony', href: '/farewell', icon: GraduationCap, isExtra: false },
+  { id: 'IV', title: 'The Last Table', desc: 'Dinner', href: '/last-table', icon: UtensilsIcon, isExtra: false },
+  { id: 'Extra', title: 'Miscellaneous', desc: 'Corrections & Info', href: '/misc', icon: Settings, isExtra: true },
 ];
 
 function UtensilsIcon(props: any) {
@@ -241,7 +241,7 @@ export default function Home() {
               
               <div className={`flex-1 text-center ${index % 2 !== 0 ? 'md:text-right' : 'md:text-left'}`}>
                 <div className="text-gold font-serif text-lg md:text-xl tracking-widest mb-2 opacity-80 group-hover:opacity-100 transition-opacity">
-                  CHAPTER {chapter.id}
+                  {chapter.isExtra ? 'EXTRA' : `CHAPTER ${chapter.id}`}
                 </div>
                 <h2 className="text-3xl md:text-5xl font-serif font-bold text-white mb-4 group-hover:text-gradient-gold transition-all duration-300">
                   {chapter.title}
