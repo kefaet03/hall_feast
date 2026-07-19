@@ -51,6 +51,8 @@ export default function CorrectionForm({ onClose }: { onClose: () => void }) {
     }
   };
 
+  const [isEnsured, setIsEnsured] = useState(false);
+
   if (isSuccess) {
     return (
       <motion.div
@@ -64,6 +66,37 @@ export default function CorrectionForm({ onClose }: { onClose: () => void }) {
         <p className="text-gray-400">
           Thank you for providing the correct information.
         </p>
+      </motion.div>
+    );
+  }
+
+  if (!isEnsured) {
+    return (
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.95 }}
+        className="glass-panel p-8 rounded-3xl text-center max-w-md mx-auto relative overflow-hidden border border-gold/20"
+      >
+        <div className="absolute top-0 left-0 w-full h-1 bg-yellow-500" />
+        <h2 className="text-2xl font-serif text-white mb-4">Are you sure?</h2>
+        <p className="text-gray-400 mb-8">
+          Please confirm that your information on the provided list is actually incorrect before proceeding with the correction form.
+        </p>
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <button
+            onClick={onClose}
+            className="px-6 py-2 rounded-xl text-gray-400 hover:text-white hover:bg-white/5 transition-colors border border-gray-600"
+          >
+            Cancel
+          </button>
+          <button
+            onClick={() => setIsEnsured(true)}
+            className="px-6 py-2 rounded-xl bg-gold text-black font-semibold hover:bg-yellow-400 transition-colors"
+          >
+            Yes, my info is wrong
+          </button>
+        </div>
       </motion.div>
     );
   }
