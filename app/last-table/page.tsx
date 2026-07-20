@@ -99,7 +99,7 @@ export default function LastTablePage() {
           </div>
 
           <div className="mt-16 text-gold/60 text-sm tracking-widest uppercase">
-            23 July, 2026 • 8:00 PM
+            26 July, 2026 • 8:00 PM
           </div>
         </div>
       </motion.div>

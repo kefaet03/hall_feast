@@ -47,7 +47,7 @@ export default function Home() {
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0 });
 
   useEffect(() => {
-    const targetDate = new Date('2026-07-23T00:00:00').getTime();
+    const targetDate = new Date('2026-07-26T00:00:00').getTime();
     
     const updateCountdown = () => {
       const now = new Date().getTime();
@@ -127,7 +127,7 @@ export default function Home() {
               <Calendar size={20} />
               <span className="font-semibold tracking-wider uppercase text-sm">The Date</span>
             </div>
-            <h2 className="text-3xl font-serif text-white">July 23, 2026</h2>
+            <h2 className="text-3xl font-serif text-white">July 26, 2026</h2>
           </div>
           
           <div className="flex gap-8 mt-8">
@@ -180,7 +180,7 @@ export default function Home() {
             <Users size={24} />
           </div>
           <div>
-            <div className="text-2xl font-black text-white">180+</div>
+            <div className="text-2xl font-black text-white">138</div>
             <div className="text-sm text-gray-400">Graduating Brothers</div>
           </div>
         </motion.div>
